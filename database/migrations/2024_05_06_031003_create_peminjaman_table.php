@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->uuid('id_peminjaman')->primary();
             $table->foreignUuid('id_pengguna')->references('id_pengguna')->on('pengguna')->onDelete('cascade')->nullable();
-            $table->foreignUuid('id_nonuser')->references('id_nonuser')->on('non_user')->onDelete('cascade')->nullable();
             $table->date('tanggal_awal',255);
             $table->date('tanggal_akhir',255);
             $table->text('deskripsi')->nullable();;
