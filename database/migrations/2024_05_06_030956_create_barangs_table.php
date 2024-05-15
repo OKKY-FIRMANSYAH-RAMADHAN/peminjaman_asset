@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignUuid('id_kategori')->references('id_kategori')->on('kategori')->onDelete('cascade');
             $table->string('kode_satker',255);
             $table->string('nama_satker',255);
-            $table->bigInteger('kode_barang')->length(20);
+            $table->string('kode_barang',255);
             $table->string('nama_barang',255);
             $table->integer('nup');
             $table->enum('kondisi', ['Baik', 'Rusak Ringan', 'Rusak Berat'])->default('Baik');
@@ -31,10 +31,10 @@ return new class extends Migration
             $table->float('nilai_buku');
             $table->integer('kuantitas');
             $table->integer('jumlah_foto');
-            $table->text('status_pemggunaan');
+            $table->text('status_penggunaan');
             $table->string('no_psp',50);
             $table->date('tanggal_psp');
-            $table->string('no_ticket_usul_psp',255);
+            $table->string('no_tiket_usul_psp',255)->nullable();
             $table->enum('intra_ekstra', ['Intrakomptabel', 'Ekstrakomptabel'])->default('Intrakomptabel');
             $table->enum('status_bpybds', ['Tidak', 'Ada'])->default('Tidak');
             $table->enum('status_henti_guna', ['Tidak', 'Ada'])->default('Tidak');
