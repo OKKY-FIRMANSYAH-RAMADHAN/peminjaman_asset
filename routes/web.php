@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AsetController;
 use App\Http\Controllers\Admin\KategoriController;
+use App\Http\Controllers\PeminjamanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,3 +24,5 @@ Route::get('/administrator/aset/kategori/{slug}', [AsetController::class, 'showB
 Route::get('/administrator/aset/import', [AsetController::class, 'viewImport'])->name('admin.import.aset');
 Route::post('/administrator/aset/import', [AsetController::class, 'import']);
 
+// Peminjaman
+Route::get('/administrator/peminjaman/tambah', [PeminjamanController::class, 'index'])->name('admin.peminjaman.tambah');

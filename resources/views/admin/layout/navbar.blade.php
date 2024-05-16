@@ -38,48 +38,42 @@
             <ul class="nav-main">
                 <li class="nav-main-item">
                     <a class="nav-main-link {{ Route::currentRouteName() === 'admin.dashboard' ? 'active' : '' }}"
-                        href="/administrator">
+                        href="{{route('admin.dashboard')}}">
                         <i class="nav-main-link-icon si si-speedometer"></i>
                         <span class="nav-main-link-name">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link {{ Route::currentRouteName() === 'admin.data.kategori' ? 'active' : '' }}"
-                        href="/administrator/kategori">
+                        href="{{route('admin.data.kategori')}}">
                         <i class="nav-main-link-icon far fa-rectangle-list"></i>Kategori</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link {{ Route::currentRouteName() === 'admin.data.aset' || Route::currentRouteName() === 'admin.import.aset' || Route::currentRouteName() === 'admin.data.aset.kategori' ? 'active' : '' }}"
-                        href="/administrator/aset">
+                        href="{{route('admin.data.aset')}}">
                         <i class="nav-main-link-icon si si-layers"></i>
-                        <span class="nav-main-link-name">Asset</span>
+                        <span class="nav-main-link-name">Aset</span>
                     </a>
                 </li>
-                <li class="nav-main-item open">
+                <li class="nav-main-item {{ Route::currentRouteName() === 'admin.peminjaman.tambah' ? 'open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                         aria-expanded="true" href="#">
-                        <i class="nav-main-link-icon si si-badge"></i>
+                        <i class="nav-main-link-icon fa fa-hand-holding"></i>
                         <span class="nav-main-link-name">Peminjaman</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link active" href="be_ui_grid.html">
+                            <a class="nav-main-link {{ Route::currentRouteName() === 'admin.peminjaman.tambah' ? 'active' : '' }}" href="{{route('admin.peminjaman.tambah')}}">
                                 <span class="nav-main-link-name">Tambah Peminjaman</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                          <a class="nav-main-link active" href="be_ui_grid.html">
+                          <a class="nav-main-link " href="be_ui_grid.html">
                               <span class="nav-main-link-name">Status Peminjaman</span>
                           </a>
                       </li>
                     </ul>
-                </li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link" href="be_pages_dashboard.html">
-                        <i class="nav-main-link-icon fa fa-hand-holding"></i>
-                        <span class="nav-main-link-name">Peminjaman</span>
-                    </a>
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link" href="be_pages_dashboard.html">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use App\Models\Barang;
 
 class PeminjamanController extends Controller
 {
@@ -12,7 +13,11 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'title'     => 'Tambah Peminjaman',
+            'barang'    => Barang::with('kategori')->get(),
+        ];
+        return view('admin.peminjaman.tambah',$data);
     }
 
     /**

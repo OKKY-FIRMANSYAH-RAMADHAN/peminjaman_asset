@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id_detailpeminjaman')->primary();
             $table->foreignUuid('id_peminjaman')->references('id_peminjaman')->on('peminjaman')->onDelete('cascade');
             $table->foreignUuid('id_barang')->references('id_barang')->on('barang')->onDelete('cascade');
-            $table->integer('jumlah');
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
     }
