@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use App\Models\Kategori;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\DB;
 
 class Barang extends Model
 {
@@ -23,7 +24,23 @@ class Barang extends Model
 
     public function kategori(): BelongsTo
     {
-        return $this->belongsTo(Kategori::class, 'id_kategori', 'id_kategori');
+        return $this->belongsTo(Kategori::class, 'id_kategori', 'id_kategori')->select('id_kategori', 'nama_kategori');;
+    }
+
+    public function scopeWithLatestLokasi($query)
+    {
+        $subquery = DB::table('lokasi')
+            ->select('id_barang', DB::raw('MAX(created_at) as latest_created_at'))
+            ->groupBy('id_barang');
+
+        return $query->leftJoinSub($subquery, 'latest_lokasi', function($join) {
+                $join->on('barang.id_barang', '=', 'latest_lokasi.id_barang');
+            })
+            ->leftJoin('lokasi', function($join) {
+                $join->on('barang.id_barang', '=', 'lokasi.id_barang')
+                     ->on('lokasi.created_at', '=', 'latest_lokasi.latest_created_at');
+            })
+            ->select('barang.*', 'lokasi.lokasi');
     }
 
 }

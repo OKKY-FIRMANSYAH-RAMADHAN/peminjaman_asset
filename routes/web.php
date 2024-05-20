@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\AsetController;
+use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\PeminjamanController;
 
 Route::get('/', function () {
@@ -23,6 +24,9 @@ Route::get('/administrator/aset', [AsetController::class, 'index'])->name('admin
 Route::get('/administrator/aset/kategori/{slug}', [AsetController::class, 'showByKategori'])->name('admin.data.aset.kategori');
 Route::get('/administrator/aset/import', [AsetController::class, 'viewImport'])->name('admin.import.aset');
 Route::post('/administrator/aset/import', [AsetController::class, 'import']);
+
+// Lokasi
+Route::post('/administrator/lokasi/set', [LokasiController::class, 'store'])->name('admin.lokasi.set');
 
 // Peminjaman
 Route::get('/administrator/peminjaman', [PeminjamanController::class, 'index'])->name('admin.peminjaman');

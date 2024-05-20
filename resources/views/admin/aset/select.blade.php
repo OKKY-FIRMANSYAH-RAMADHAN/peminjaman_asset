@@ -19,10 +19,6 @@
                     </h1>
                 </div>
                 <div class="mt-3 mt-md-0 ms-md-3 space-x-1">
-                    {{-- <a class="btn btn-sm btn-secondary space-x-1" href="/administrator/aset/import">
-                        <i class="fa fa-plus opacity-50"></i>
-                        <span>Tambah Barang</span>
-                    </a> --}}
                     <a class="btn btn-sm btn-success space-x-1" href="/administrator/aset/import">
                         <i class="fa fa-upload opacity-50"></i>
                         <span>Import Barang</span>
@@ -128,7 +124,10 @@
                                     <th class="d-none">{{ $data->sisa_umur }}</th>
                                     <th class="d-none">{{ $data->status_sakti }}</th>
                                     <th>{{ $data->kode_register_sakti }}</th>
-                                    <th>Belum Ditentukan <button type="button" class="btn btn-sm btn-alt-secondary editButton" data-id="{{ $data->id_barang }}" data-name="{{ $ktg->nama_kategori }}"><i class="fa fa-fw fa-pencil-alt"></i></button></th>
+                                    <th class="no-print">{{ $data->lokasi != null ? $data->lokasi : '-' }} <button type="button"
+                                            class="btn btn-sm editButton"
+                                            data-id="{{ $data->id_barang }}" data-lokasi="{{ $data->lokasi }}"><i
+                                                class="fa fa-fw fa-pencil-alt"></i></button></th>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -139,6 +138,49 @@
         </div>
         <!-- END Page Content -->
     </main>
+
+    {{-- Modal Set Lokasi --}}
+    <div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modal-block-vcenter"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-popin modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="block block-rounded block-transparent mb-0">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Edit Data Lokasi</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-fw fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <form action="{{route('admin.lokasi.set')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="block-content fs-sm">
+                            <div class="block-content block-content-full">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="mb-4">
+                                            <label class="form-label" for="example-file-input">Lokasi</label>
+                                            <input class="form-control" type="text" name="lokasi"
+                                                id="lokasi" placeholder="Lokasi Baru">
+                                            <input class="form-control" type="hidden" name="id_barang"
+                                                id="id_barang" placeholder="Id Barang">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full text-end bg-body">
+                            <button type="button" class="btn btn-sm btn-alt-secondary me-1"
+                                data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('javascript')
@@ -161,4 +203,23 @@
 
     <!-- Page JS Code -->
     <script src="{{ asset('assets/js/pages/be_tables_datatables.min.js') }}"></script>
+
+    <script>
+        var editButtons = document.querySelectorAll(".editButton");
+        editButtons.forEach(function(editButton) {
+            editButton.addEventListener("click", function() {
+                var id = editButton.getAttribute("data-id");
+                var lokasi = editButton.getAttribute("data-lokasi");
+    
+                var modal = document.getElementById("editModal");
+                var namaLokasiInput = modal.querySelector("#lokasi");
+                var idBarangInput = modal.querySelector("#id_barang");
+    
+                namaLokasiInput.value = lokasi; 
+                idBarangInput.value = id;
+                var editModal = new bootstrap.Modal(modal);
+                editModal.show();
+            });
+        });
+    </script>
 @endsection

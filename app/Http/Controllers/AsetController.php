@@ -15,7 +15,7 @@ class AsetController extends Controller
     {
         $data = [
             'title'     => 'List Data Aset',
-            'barang'    => Barang::with('kategori')->get(),
+            'barang'    => Barang::with('kategori')->withLatestLokasi()->get(),
             'kategori'  => Kategori::all()
         ];
 
