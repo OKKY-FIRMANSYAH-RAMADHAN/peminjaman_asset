@@ -88,6 +88,7 @@
                                 <th class="d-none">Sisa Umur (Semester)</th>
                                 <th class="d-none">Status SAKTI</th>
                                 <th>Kode Register SAKTI</th>
+                                <th>Lokasi Sekarang</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -127,6 +128,7 @@
                                     <th class="d-none">{{ $data->sisa_umur }}</th>
                                     <th class="d-none">{{ $data->status_sakti }}</th>
                                     <th>{{ $data->kode_register_sakti }}</th>
+                                    <th>Belum Ditentukan <button type="button" class="btn btn-sm btn-alt-secondary editButton" data-id="{{ $data->id_barang }}" data-name="{{ $ktg->nama_kategori }}"><i class="fa fa-fw fa-pencil-alt"></i></button></th>
                                 </tr>
                             @endforeach
                         </tbody>

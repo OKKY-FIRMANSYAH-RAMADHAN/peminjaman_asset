@@ -2,64 +2,55 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Kategori;
 
 class KategoriController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $data = [
+            'title'     => 'List Data Kategori',
+            'kategori'  => Kategori::all()
+        ];
+
+        return view('admin.kategori.select', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function insert(Request $request){
+        $kategori = new Kategori();
+        $kategori->nama_kategori = $request->nama_kategori;
+        $kategori->slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->nama_kategori), '-'));
+        $save = $kategori->save();
+        
+        if ($save) {
+            session()->flash('success', 'Berhasil Menambah Data Kategori');
+            return redirect()->route('admin.data.kategori');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function update(Request $request)
     {
-        //
+        $kategori = Kategori::find($request->id_kategori);
+        $kategori->nama_kategori = $request->nama_kategori;
+        $kategori->slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->nama_kategori), '-'));
+        $update = $kategori->save();
+
+        if ($update) {
+            session()->flash('success', 'Berhasil Mengubah Data Kategori');
+            return redirect()->route('admin.data.kategori');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Kategori $kategori)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Kategori $kategori)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Kategori $kategori)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Kategori $kategori)
-    {
-        //
+        $kategori = Kategori::find($id);
+        $delete = Kategori::destroy($id);
+        if ($delete) {
+            session()->flash('success', 'Berhasil Menghapus Data Kategori');
+            return redirect()->route('admin.data.kategori');
+        }
+            
     }
 }

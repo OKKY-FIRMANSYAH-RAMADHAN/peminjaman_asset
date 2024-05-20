@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Admin\AsetController;
-use App\Http\Controllers\Admin\KategoriController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\AsetController;
 use App\Http\Controllers\PeminjamanController;
 
 Route::get('/', function () {

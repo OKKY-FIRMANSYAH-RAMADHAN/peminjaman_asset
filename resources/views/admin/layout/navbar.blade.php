@@ -46,7 +46,8 @@
                 <li class="nav-main-item">
                     <a class="nav-main-link {{ Route::currentRouteName() === 'admin.data.kategori' ? 'active' : '' }}"
                         href="{{route('admin.data.kategori')}}">
-                        <i class="nav-main-link-icon far fa-rectangle-list"></i>Kategori</span>
+                        <i class="nav-main-link-icon far fa-rectangle-list"></i>
+                        <span class="nav-main-link-name">Kategori</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
@@ -56,7 +57,7 @@
                         <span class="nav-main-link-name">Aset</span>
                     </a>
                 </li>
-                <li class="nav-main-item {{ Route::currentRouteName() === 'admin.peminjaman.tambah' ? 'open' : '' }}">
+                <li class="nav-main-item {{ Route::currentRouteName() === 'admin.peminjaman.tambah' || Route::currentRouteName() === 'admin.peminjaman' ? 'open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                         aria-expanded="true" href="#">
                         <i class="nav-main-link-icon fa fa-hand-holding"></i>
@@ -69,20 +70,20 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                          <a class="nav-main-link " href="be_ui_grid.html">
-                              <span class="nav-main-link-name">Status Peminjaman</span>
+                          <a class="nav-main-link {{ Route::currentRouteName() === 'admin.peminjaman' ? 'active' : '' }}" href="{{ route('admin.peminjaman') }}">
+                              <span class="nav-main-link-name">Sedang Berlangsung</span>
                           </a>
                       </li>
                     </ul>
                 </li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="be_pages_dashboard.html">
+                    <a class="nav-main-link" {{ Route::currentRouteName() === 'admin.alporan' ? 'active' : '' }}" href="{{route('admin.laporan')}}">
                         <i class="nav-main-link-icon si si-notebook"></i>
                         <span class="nav-main-link-name">Laporan</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="be_pages_dashboard.html">
+                    <a class="nav-main-link" href="">
                         <i class="nav-main-link-icon si si-users"></i>
                         <span class="nav-main-link-name">Pengguna</span>
                     </a>

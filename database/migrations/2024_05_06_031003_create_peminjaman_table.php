@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('peminjam', 255);
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali')->nullable();
-            $table->text('lokasi_awal')->nullable();
-            $table->text('lokasi_akhir')->nullable();
             $table->text('deskripsi')->nullable();
             $table->enum('status', ['0', '1'])->default('0');
             $table->timestamps();

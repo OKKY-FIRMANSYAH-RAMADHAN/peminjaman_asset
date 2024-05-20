@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detail_peminjaman', function (Blueprint $table) {
-            $table->uuid('id_detailpeminjaman')->primary();
-            $table->foreignUuid('id_peminjaman')->references('id_peminjaman')->on('peminjaman')->onDelete('cascade');
+        Schema::create('lokasi', function (Blueprint $table) {
+            $table->uuid('id_lokasi')->primary();
             $table->foreignUuid('id_barang')->references('id_barang')->on('barang')->onDelete('cascade');
-            $table->text('lokasi_awal')->nullable();
-            $table->text('lokasi_akhir')->nullable();
-            $table->text('deskripsi')->nullable();
+            $table->uuid('id_peminjaman')->nullable();
+            $table->foreign('id_peminjaman')->references('id_peminjaman')->on('peminjaman')->onDelete('cascade');
+            $table->string('lokasi',255);
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detail_peminjaman');
+        Schema::dropIfExists('lokasi');
     }
 };
