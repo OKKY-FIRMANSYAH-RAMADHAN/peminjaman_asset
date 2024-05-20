@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\AsetController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\PeminjamanController;
@@ -25,4 +25,10 @@ Route::get('/administrator/aset/import', [AsetController::class, 'viewImport'])-
 Route::post('/administrator/aset/import', [AsetController::class, 'import']);
 
 // Peminjaman
-Route::get('/administrator/peminjaman/tambah', [PeminjamanController::class, 'index'])->name('admin.peminjaman.tambah');
+Route::get('/administrator/peminjaman', [PeminjamanController::class, 'index'])->name('admin.peminjaman');
+Route::get('/administrator/peminjaman/tambah', [PeminjamanController::class, 'create'])->name('admin.peminjaman.tambah');
+Route::post('/administrator/peminjaman/tambah', [PeminjamanController::class, 'store'])->name('admin.peminjaman.store');
+Route::get('/administrator/peminjaman/status/{id}', [PeminjamanController::class, 'status'])->name('admin.update.status');
+
+// Laporan
+Route::get('/administrator/laporan', [PeminjamanController::class, 'laporan'])->name('admin.laporan');

@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Kategori;
+use App\Models\Barang;
+use App\Models\Peminjaman;
 
 class DashboardController extends Controller
 {
@@ -14,6 +17,11 @@ class DashboardController extends Controller
     {
         $data = [
             'title'     => 'Dashboard',
+            'kategori'  => count(Kategori::all()),
+            'barang'    => count(Barang::all()),
+            'peminjaman'=> count(Peminjaman::all()),
+            'berlangsung'=> count(Peminjaman::where('status', '0')->get()),
+            'terbaru'   => Peminjaman::orderBy('created_at', 'desc')->limit(10)->get()
         ];
         return view('admin/dashboard', $data);
     }
