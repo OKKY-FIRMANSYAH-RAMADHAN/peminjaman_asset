@@ -55,7 +55,7 @@ class PeminjamanController extends Controller
         }
 
         session()->flash('success', 'Berhasil Menambah Data Peminjaman');
-        return redirect()->route('admin.peminjaman.tambah');
+        return redirect()->route('admin.peminjaman');
     }
 
     public function create()
@@ -93,7 +93,7 @@ class PeminjamanController extends Controller
     {
         $data = [
             'title'     => 'Laporan Riwayat Peminjaman',
-            'peminjaman' => Peminjaman::all()
+            'peminjaman' => Peminjaman::orderBy('created_at', 'desc')->get()
         ];
         return view('admin.peminjaman.laporan',$data);
     }

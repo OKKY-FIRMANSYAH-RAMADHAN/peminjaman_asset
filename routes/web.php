@@ -28,6 +28,7 @@ Route::post('/administrator/aset/import', [AsetController::class, 'import']);
 
 // Lokasi
 Route::post('/administrator/lokasi/set', [LokasiController::class, 'store'])->name('admin.lokasi.set');
+Route::get('/administrator/get-lokasi/{id}', [LokasiController::class, 'show'])->name('admin.lokasi.get');
 
 // Peminjaman
 Route::get('/administrator/peminjaman', [PeminjamanController::class, 'index'])->name('admin.peminjaman');

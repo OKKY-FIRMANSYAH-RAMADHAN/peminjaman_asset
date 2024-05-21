@@ -117,13 +117,45 @@
                             @endforeach
                         </select>
                     </td>
-                    <td><input type="text" class="form-control" required name="lokasi_awal[]" placeholder="Lokasi Awal"></td>
+                    <td><input type="text" class="form-control lokasi-awal" required name="lokasi_awal[]" placeholder="Lokasi Awal"></td>
                     <td><input type="text" class="form-control" required name="lokasi_akhir[]" placeholder="Lokasi Tujuan" required></td>
                     <td><textarea class="form-control" name="deskripsi_barang[]" placeholder="Deskripsi" rows="1"></textarea></td>
                     <td><button type="button" class="btn btn-danger btn-sm delete-row"><i class="fas fa-times"></i></button></td>
                 `;
                 tableBody.appendChild(newRow);
-                $(newRow).find('.js-select2').select2();
+                // Inisialisasi Select2 pada elemen baru
+                const selectElement = $(newRow).find('.js-select2');
+                selectElement.select2();
+
+                // Tambahkan event listener untuk log id barang saat dipilih
+                selectElement.on('change', function() {
+                    const selectedId = this.value;
+
+                    // Lakukan XHR request untuk mendapatkan informasi barang
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', `/administrator/get-lokasi/${selectedId}`, true);
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            const data = JSON.parse(xhr.responseText);
+                            const lokasiAwalInput = newRow.querySelector('.lokasi-awal');
+                            if (data.lokasi) {
+                                lokasiAwalInput.value = data.lokasi;
+                                lokasiAwalInput.placeholder = "Lokasi Awal";
+                                lokasiAwalInput.readOnly = true;
+                            } else {
+                                lokasiAwalInput.value = '';
+                                lokasiAwalInput.placeholder = "Tentukan Lokasi";
+                                lokasiAwalInput.readOnly = false;
+                            }
+                        } else {
+                            console.error('Error fetching data:', xhr.statusText);
+                        }
+                    };
+                    xhr.onerror = function() {
+                        console.error('Request failed');
+                    };
+                    xhr.send();
+                });
                 toggleSubmitButton();
                 newRow.querySelector('.delete-row').addEventListener('click', function() {
                     tableBody.removeChild(newRow);
