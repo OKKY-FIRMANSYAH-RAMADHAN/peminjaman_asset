@@ -21,6 +21,7 @@ Route::get('/administrator/kategori/delete/{id}', [KategoriController::class, 'd
 
 // Asset
 Route::get('/administrator/aset', [AsetController::class, 'index'])->name('admin.data.aset');
+Route::get('/administrator/aset/detail/{id}', [AsetController::class, 'show'])->name('admin.detail.aset');
 Route::get('/administrator/aset/kategori/{slug}', [AsetController::class, 'showByKategori'])->name('admin.data.aset.kategori');
 Route::get('/administrator/aset/import', [AsetController::class, 'viewImport'])->name('admin.import.aset');
 Route::post('/administrator/aset/import', [AsetController::class, 'import']);
@@ -33,6 +34,7 @@ Route::get('/administrator/peminjaman', [PeminjamanController::class, 'index'])-
 Route::get('/administrator/peminjaman/tambah', [PeminjamanController::class, 'create'])->name('admin.peminjaman.tambah');
 Route::post('/administrator/peminjaman/tambah', [PeminjamanController::class, 'store'])->name('admin.peminjaman.store');
 Route::get('/administrator/peminjaman/status/{id}', [PeminjamanController::class, 'status'])->name('admin.update.status');
+Route::get('/administrator/peminjaman/delete/{id}', [PeminjamanController::class, 'destroy'])->name('admin.peminjaman.delete');
 
 // Laporan
 Route::get('/administrator/laporan', [PeminjamanController::class, 'laporan'])->name('admin.laporan');

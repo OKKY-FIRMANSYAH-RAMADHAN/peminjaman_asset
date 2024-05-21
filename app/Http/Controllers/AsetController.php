@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\AsetImport;
 use App\Models\Barang;
+use App\Models\Lokasi;
 use App\Models\Kategori;
 
 class AsetController extends Controller
@@ -58,5 +59,16 @@ class AsetController extends Controller
         ];
 
         return view('admin.aset.select', $data);
+    }
+
+    public function show($id=null) {
+        $data = [
+            'title'     => 'List Data Aset ',
+            'barang'    => Barang::with('kategori')->withLatestLokasi()->find($id),
+            'lokasi'    => Lokasi::where('id_barang', '=', $id)->orderBy('created_at', 'desc')->with('peminjaman')->get()
+        ];
+
+        //echo json_encode($data['lokasi']);
+        return view('admin.aset.detail', $data);
     }
 }

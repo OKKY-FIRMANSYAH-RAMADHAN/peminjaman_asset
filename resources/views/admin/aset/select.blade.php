@@ -83,8 +83,9 @@
                                 <th class="d-none">Status Usul Hapus</th>
                                 <th class="d-none">Sisa Umur (Semester)</th>
                                 <th class="d-none">Status SAKTI</th>
-                                <th>Kode Register SAKTI</th>
+                                <th class="d-none">Kode Register SAKTI</th>
                                 <th>Lokasi Sekarang</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,11 +124,12 @@
                                     <th class="d-none">{{ $data->status_usul_hapus }}</th>
                                     <th class="d-none">{{ $data->sisa_umur }}</th>
                                     <th class="d-none">{{ $data->status_sakti }}</th>
-                                    <th>{{ $data->kode_register_sakti }}</th>
-                                    <th class="no-print">{{ $data->lokasi != null ? $data->lokasi : '-' }} <button type="button"
-                                            class="btn btn-sm editButton"
+                                    <th class="d-none">{{ $data->kode_register_sakti }}</th>
+                                    <th class="no-print">{{ $data->lokasi != null ? $data->lokasi : '-' }} <button
+                                            type="button" class="btn btn-sm editButton"
                                             data-id="{{ $data->id_barang }}" data-lokasi="{{ $data->lokasi }}"><i
                                                 class="fa fa-fw fa-pencil-alt"></i></button></th>
+                                    <th><a href="{{route('admin.detail.aset', $data->id_barang)}}" class="btn btn-sm btn-warning"><i class="fas fa-info-circle"></i></a></th>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -153,7 +155,7 @@
                             </button>
                         </div>
                     </div>
-                    <form action="{{route('admin.lokasi.set')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.lokasi.set') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="block-content fs-sm">
                             <div class="block-content block-content-full">
@@ -161,10 +163,10 @@
                                     <div class="col-12">
                                         <div class="mb-4">
                                             <label class="form-label" for="example-file-input">Lokasi</label>
-                                            <input class="form-control" type="text" name="lokasi"
-                                                id="lokasi" placeholder="Lokasi Baru">
-                                            <input class="form-control" type="hidden" name="id_barang"
-                                                id="id_barang" placeholder="Id Barang">
+                                            <input class="form-control" type="text" name="lokasi" id="lokasi"
+                                                placeholder="Lokasi Baru">
+                                            <input class="form-control" type="hidden" name="id_barang" id="id_barang"
+                                                placeholder="Id Barang">
                                         </div>
                                     </div>
                                 </div>
@@ -210,12 +212,12 @@
             editButton.addEventListener("click", function() {
                 var id = editButton.getAttribute("data-id");
                 var lokasi = editButton.getAttribute("data-lokasi");
-    
+
                 var modal = document.getElementById("editModal");
                 var namaLokasiInput = modal.querySelector("#lokasi");
                 var idBarangInput = modal.querySelector("#id_barang");
-    
-                namaLokasiInput.value = lokasi; 
+
+                namaLokasiInput.value = lokasi;
                 idBarangInput.value = id;
                 var editModal = new bootstrap.Modal(modal);
                 editModal.show();

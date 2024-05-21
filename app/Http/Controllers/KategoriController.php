@@ -45,7 +45,6 @@ class KategoriController extends Controller
 
     public function destroy($id)
     {
-        $kategori = Kategori::find($id);
         $delete = Kategori::destroy($id);
         if ($delete) {
             session()->flash('success', 'Berhasil Menghapus Data Kategori');

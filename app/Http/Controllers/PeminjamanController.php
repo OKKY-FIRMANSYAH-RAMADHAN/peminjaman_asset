@@ -6,6 +6,7 @@ use App\Models\Peminjaman;
 use App\Models\DetailPeminjaman;
 use Illuminate\Http\Request;
 use App\Models\Barang;
+use App\Models\Lokasi;
 
 class PeminjamanController extends Controller
 {
@@ -36,7 +37,7 @@ class PeminjamanController extends Controller
         
         $id = $peminjaman->id_peminjaman;
 
-        // Store ke tabel Detail Peminjaman
+        // Store ke tabel Detail Peminjaman Dan Lokasi
         foreach ($request->id_barang as $key => $item_id) {
             $detailpeminjaman = new DetailPeminjaman();
             $detailpeminjaman->id_peminjaman    = $id;
@@ -45,6 +46,12 @@ class PeminjamanController extends Controller
             $detailpeminjaman->lokasi_akhir     = $request->lokasi_akhir[$key];
             $detailpeminjaman->deskripsi        = $request->deskripsi_barang[$key];
             $detailpeminjaman->save();
+
+            $lokasi = new Lokasi();
+            $lokasi->id_barang      = $request->id_barang[$key];
+            $lokasi->id_peminjaman  = $id;
+            $lokasi->lokasi         = $request->lokasi_akhir[$key];
+            $lokasi->save();
         }
 
         session()->flash('success', 'Berhasil Menambah Data Peminjaman');
@@ -66,6 +73,16 @@ class PeminjamanController extends Controller
         $peminjaman->status = '1';
         $update = $peminjaman->save();
 
+        $detailpeminjaman = DetailPeminjaman::where('id_peminjaman', $id)->get();
+        foreach ($detailpeminjaman as $item) {
+            $lokasi = new Lokasi();
+            $lokasi->id_barang      = $item->id_barang;
+            $lokasi->id_peminjaman  = $item->id_peminjaman;
+            $lokasi->lokasi         = $item->lokasi_awal;
+            $lokasi->status         = '1';
+            $lokasi->save();
+        }
+
         if ($update) {
             session()->flash('success', 'Berhasil Mengubah Status Peminjaman');
             return redirect()->route('admin.peminjaman');
@@ -84,8 +101,12 @@ class PeminjamanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Peminjaman $peminjaman)
+    public function destroy($id)
     {
-        //
+        $delete = Peminjaman::destroy($id);
+        if ($delete) {
+            session()->flash('success', 'Berhasil Menghapus Data Peminjaman');
+            return redirect()->route('admin.peminjaman');
+        }
     }
 }
