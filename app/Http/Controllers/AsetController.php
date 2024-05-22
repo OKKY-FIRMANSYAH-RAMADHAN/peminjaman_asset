@@ -9,30 +9,50 @@ use App\Imports\AsetImport;
 use App\Models\Barang;
 use App\Models\Lokasi;
 use App\Models\Kategori;
+use DataTables;
+use App\Exports\AsetExport;
+use Carbon\Carbon;
 
 class AsetController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data = [
-            'title'     => 'List Data Aset',
-            'barang'    => Barang::with('kategori')->withLatestLokasi()->get(),
-            'kategori'  => Kategori::all()
-        ];
+        if ($request->ajax()) {
+            $query = Barang::with('kategori')->withLatestLokasi();
 
-        return view('admin.aset.select', $data);
+            return DataTables::eloquent($query)
+                ->addIndexColumn()
+                ->addColumn('kategori', function ($row) {
+                    return $row->kategori->nama_kategori;
+                })
+                ->addColumn('lokasi', function ($row) {
+                    $lokasi = $row->lokasi ? $row->lokasi : '-';
+                    $editButton = '<button type="button" class="btn btn-sm editButton" data-id="' . $row->id_barang . '" data-lokasi="' . $row->lokasi . '"><i class="fa fa-fw fa-pencil-alt"></i></button>';
+                    return $lokasi . ' ' . $editButton;
+                })
+                ->addColumn('aksi', function ($row) {
+                    return '<a href="' . route('admin.detail.aset', $row->id_barang) . '" class="btn btn-sm btn-warning"><i class="fas fa-info-circle"></i></a>';
+                })
+                ->rawColumns(['lokasi', 'aksi'])
+                ->make(true);
+        }
+
+        return view('admin.aset.select', [
+            'title' => 'List Data Aset',
+            'kategori' => Kategori::all(),
+        ]);
     }
 
     public function viewImport()
     {
         $data = [
-            'title'     => 'Import Data Aset',
-            'kategori' => Kategori::all()
+            'title' => 'Import Data Aset',
+            'kategori' => Kategori::all(),
         ];
-        return view('admin.aset.import',$data);
+        return view('admin.aset.import', $data);
     }
 
-    public function import(Request $request) 
+    public function import(Request $request)
     {
         $request->validate([
             'file' => 'required|max:5000|mimes:xlsx,xls',
@@ -49,26 +69,59 @@ class AsetController extends Controller
         }
     }
 
-    public function showByKategori($slug){
+    public function showByKategori(Request $request, $slug)
+    {
         $kategori = Kategori::where('slug', $slug)->firstOrFail();
+        if ($request->ajax()) {
+            $query = Barang::with('kategori')->withLatestLokasi()->where('id_kategori', $kategori->id_kategori);
 
-        $data = [
-            'title'     => 'List Data Aset '. $kategori->nama_kategori,
-            'barang'    => Barang::with('kategori')->where('id_kategori', '=', $kategori->id_kategori)->get(),
-            'kategori'  => Kategori::all()
-        ];
+            return DataTables::eloquent($query)
+                ->addIndexColumn()
+                ->addColumn('kategori', function ($row) {
+                    return $row->kategori->nama_kategori;
+                })
+                ->addColumn('lokasi', function ($row) {
+                    $lokasi = $row->lokasi ? $row->lokasi : '-';
+                    $editButton = '<button type="button" class="btn btn-sm editButton" data-id="' . $row->id_barang . '" data-lokasi="' . $row->lokasi . '"><i class="fa fa-fw fa-pencil-alt"></i></button>';
+                    return $lokasi . ' ' . $editButton;
+                })
+                ->addColumn('aksi', function ($row) {
+                    return '<a href="' . route('admin.detail.aset', $row->id_barang) . '" class="btn btn-sm btn-warning"><i class="fas fa-info-circle"></i></a>';
+                })
+                ->rawColumns(['lokasi', 'aksi'])
+                ->make(true);
+        }
 
-        return view('admin.aset.select', $data);
+        return view('admin.aset.selectbykategori', [
+            'title' => 'List Data Aset ' . $kategori->nama_kategori,
+            'kategori' => Kategori::all(),
+            'kategoriNow' => $slug
+        ]);
     }
 
-    public function show($id=null) {
+    public function show($id = null)
+    {
         $data = [
-            'title'     => 'List Data Aset ',
-            'barang'    => Barang::with('kategori')->withLatestLokasi()->find($id),
-            'lokasi'    => Lokasi::where('id_barang', '=', $id)->orderBy('created_at', 'desc')->with('peminjaman')->get()
+            'title' => 'List Data Aset ',
+            'barang' => Barang::with('kategori')->withLatestLokasi()->find($id),
+            'lokasi' => Lokasi::where('id_barang', '=', $id)->orderBy('created_at', 'desc')->with('peminjaman')->get(),
         ];
 
         //echo json_encode($data['lokasi']);
         return view('admin.aset.detail', $data);
+    }
+
+    public function export()
+    {
+        $dateTime = Carbon::now('Asia/Jakarta')->format('d-m-Y'); 
+        $filename = "{$dateTime}_data aset.xlsx";
+        return Excel::download(new AsetExport(), $filename);
+    }
+
+    public function exportByKategori($slug) {
+        $kategori = Kategori::where('slug', $slug)->firstOrFail();
+        $dateTime = Carbon::now('Asia/Jakarta')->format('d-m-Y'); 
+        $filename = "{$dateTime}_data aset {$slug}.xlsx";
+        return Excel::download(new AsetExport($kategori->id_kategori), $filename);
     }
 }

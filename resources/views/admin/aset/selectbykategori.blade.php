@@ -48,7 +48,8 @@
                                 @endforeach
                             </div>
                         </div>
-                        <a href="{{route('admin.aset.export')}}" class="btn btn-sm btn-primary">Export Excel</a>
+                        <a href="{{ route('admin.aset.export.by.kategori', ['slug' => $kategoriNow]) }}" class="btn btn-sm btn-primary">Export
+                            Excel</a>
                     </div>
                     <!-- DataTables init on table by adding .js-dataTable-responsive class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
@@ -138,7 +139,7 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
-                    "url": "{{ route('admin.data.aset') }}",
+                    "url": "{{ route('admin.data.aset.kategori', Request::segment(4)) }}",
                     "type": "GET",
                 },
                 "columns": [{

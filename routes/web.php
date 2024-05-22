@@ -25,6 +25,8 @@ Route::get('/administrator/aset/detail/{id}', [AsetController::class, 'show'])->
 Route::get('/administrator/aset/kategori/{slug}', [AsetController::class, 'showByKategori'])->name('admin.data.aset.kategori');
 Route::get('/administrator/aset/import', [AsetController::class, 'viewImport'])->name('admin.import.aset');
 Route::post('/administrator/aset/import', [AsetController::class, 'import']);
+Route::get('/administrator/export/', [AsetController::class, 'export'])->name('admin.aset.export');
+Route::get('/administrator/export/kategori/{slug}', [AsetController::class, 'exportByKategori'])->name('admin.aset.export.by.kategori');
 
 // Lokasi
 Route::post('/administrator/lokasi/set', [LokasiController::class, 'store'])->name('admin.lokasi.set');

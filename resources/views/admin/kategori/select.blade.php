@@ -14,8 +14,8 @@
             <div
                 class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center py-2 text-center text-md-start">
                 <div class="flex-grow-1 mb-1 mb-md-0">
-                    <h1 class="h3 fw-bold mb-1">
-                        {{$title}}
+                    <h1 class="h3 fw-bold mb-1 no-print">
+                        
                     </h1>
                 </div>
                 <div class="mt-3 mt-md-0 ms-md-3 space-x-1">
@@ -37,7 +37,7 @@
                             <tr>
                                 <th class="text-center" style="width: 10%;">No</th>
                                 <th>Nama Kategori</th>
-                                <th style="width: 10%;">Aksi</th>
+                                <th style="width: 10%;" class="no-print">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -162,7 +162,7 @@
     <script src="{{ asset('assets/js/plugins/datatables-buttons-pdfmake/vfs_fonts.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
-
+    
     <!-- Page JS Code -->
     <script src="{{ asset('assets/js/pages/be_tables_datatables.min.js') }}"></script>
 

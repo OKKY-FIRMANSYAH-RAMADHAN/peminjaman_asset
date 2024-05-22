@@ -15,8 +15,7 @@ class LokasiController extends Controller
         $save = $lokasi->save();
         
         if ($save) {
-            session()->flash('success', 'Berhasil Mengubah Lokasi');
-            return redirect()->route('admin.data.aset');
+            return redirect()->back()->with('success', 'Berhasil Mengubah Lokasi');
         }
     }
 

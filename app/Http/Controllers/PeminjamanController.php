@@ -98,6 +98,10 @@ class PeminjamanController extends Controller
         return view('admin.peminjaman.laporan',$data);
     }
 
+    public function export(){
+        return Excel::download(new PeminjamanExport, 'peminjaman.xlsx');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
