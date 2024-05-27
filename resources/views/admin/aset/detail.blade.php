@@ -37,211 +37,212 @@
                                     </li>
                                 </ul>
                                 <div class="block-content tab-content">
-                                    <!-- Info -->
                                     <div class="tab-pane pull-x active" id="ecom-product-info" role="tabpanel"
                                         aria-labelledby="ecom-product-info-tab" tabindex="0">
-                                        <table class="table table-striped table-borderless">
-                                            <tbody>
-                                                <tr>
-                                                    <td style="width: 20%;">Kategori</td>
-                                                    <td>
-                                                        {{ $barang->kategori->nama_kategori }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Kode Satker</td>
-                                                    <td>
-                                                        {{ $barang->kode_satker }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nama Satker</td>
-                                                    <td>
-                                                        {{ $barang->nama_satker }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Kode Barang</td>
-                                                    <td>
-                                                        {{ $barang->kode_barang }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>NUP</td>
-                                                    <td>
-                                                        {{ $barang->nup }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Kondisi</td>
-                                                    <td>
-                                                        {{ $barang->kondisi }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Merek</td>
-                                                    <td>
-                                                        {{ $barang->merek }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Tipe</td>
-                                                    <td>
-                                                        {{ $barang->tipe }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Tanggal Perolehan</td>
-                                                    <td>
-                                                        {{ Carbon::parse($barang->tanggal_perolehan)->locale('id')->translatedFormat('d F Y') }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Tanggal Awal Pakai</td>
-                                                    <td>
-                                                        {{ Carbon::parse($barang->tanggal_awal_pakai)->locale('id')->translatedFormat('d F Y') }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nilai Perolehan Pertama</td>
-                                                    <td>
-                                                        {{ 'Rp ' . number_format($barang->nilai_perolehan_pertama, 0, ',', '.') }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nilai Mutasi</td>
-                                                    <td>
-                                                        {{ $barang->nilai_mutasi }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nilai Perolehan</td>
-                                                    <td>
-                                                        {{ 'Rp ' . number_format($barang->nilai_perolehan, 0, ',', '.') }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nilai Penyusutan</td>
-                                                    <td>
-                                                        {{ 'Rp ' . number_format($barang->nilai_penyusutan, 0, ',', '.') }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nilai Buku</td>
-                                                    <td>
-                                                        {{ $barang->nilai_buku }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Kuantitas</td>
-                                                    <td>
-                                                        {{ $barang->kuantitas }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Jumlah Foto</td>
-                                                    <td>
-                                                        {{ $barang->jumlah_foto }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Status Penggunaan</td>
-                                                    <td>
-                                                        {{ $barang->status_penggunaan }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>No PSP</td>
-                                                    <td>
-                                                        {{ $barang->no_psp }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Tanggal PSP</td>
-                                                    <td>
-                                                        {{ $barang->tanggal_psp }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>No Tiket Usul PSP</td>
-                                                    <td>
-                                                        {{ $barang->no_tiket_usul_psp != null ? $barang->no_tiket_usul_psp : '-' }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Intra/Ekstra</td>
-                                                    <td>
-                                                        {{ $barang->intra_ekstra }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Status BPYBDS</td>
-                                                    <td>
-                                                        {{ $barang->status_bpybds }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Status Henti Guna</td>
-                                                    <td>
-                                                        {{ $barang->status_henti_guna }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Status Kemitraan</td>
-                                                    <td>
-                                                        {{ $barang->status_kemitraan }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Status Barang Hilang</td>
-                                                    <td>
-                                                        {{ $barang->status_barang_hilang }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Status Barang DKTP</td>
-                                                    <td>
-                                                        {{ $barang->status_barang_dktp }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Status Usul Rusak Berat</td>
-                                                    <td>
-                                                        {{ $barang->status_usul_rusak_berat }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Status Usul Hapus</td>
-                                                    <td>
-                                                        {{ $barang->status_usul_hapus }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Sisa Umur (Semester)</td>
-                                                    <td>
-                                                        {{ $barang->sisa_umur }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Status SAKTI</td>
-                                                    <td>
-                                                        {{ $barang->status_sakti }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Kode Register SAKTI</td>
-                                                    <td>
-                                                        {{ $barang->kode_register_sakti }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Lokasi Sekarang</td>
-                                                    <td>
-                                                        {{ $barang->lokasi != null ? $barang->lokasi : '-' }}
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-borderless">
+                                                <tbody class="text-wrap">
+                                                    <tr>
+                                                        <td><b>Kategori</b></td>
+                                                        <td>
+                                                            {{ $barang->kategori->nama_kategori }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Kode Satker</b></td>
+                                                        <td>
+                                                            {{ $barang->kode_satker }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Nama Satker</b></td>
+                                                        <td>
+                                                            {{ $barang->nama_satker }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Kode Barang</b></td>
+                                                        <td>
+                                                            {{ $barang->kode_barang }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>NUP</b></td>
+                                                        <td>
+                                                            {{ $barang->nup }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Kondisi</b></td>
+                                                        <td>
+                                                            {{ $barang->kondisi }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Merek</b></td>
+                                                        <td>
+                                                            {{ $barang->merek }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Tipe</b></td>
+                                                        <td>
+                                                            {{ $barang->tipe }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Tanggal Perolehan</b></td>
+                                                        <td>
+                                                            {{ Carbon::parse($barang->tanggal_perolehan)->locale('id')->translatedFormat('d F Y') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Tanggal Awal Pakai</b></td>
+                                                        <td>
+                                                            {{ Carbon::parse($barang->tanggal_awal_pakai)->locale('id')->translatedFormat('d F Y') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Nilai Perolehan Pertama</b></td>
+                                                        <td>
+                                                            {{ 'Rp ' . number_format($barang->nilai_perolehan_pertama, 0, ',', '.') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Nilai Mutasi</b></td>
+                                                        <td>
+                                                            {{ $barang->nilai_mutasi }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Nilai Perolehan</b></td>
+                                                        <td>
+                                                            {{ 'Rp ' . number_format($barang->nilai_perolehan, 0, ',', '.') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Nilai Penyusutan</b></td>
+                                                        <td>
+                                                            {{ 'Rp ' . number_format($barang->nilai_penyusutan, 0, ',', '.') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Nilai Buku</b></td>
+                                                        <td>
+                                                            {{ $barang->nilai_buku }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Kuantitas</b></td>
+                                                        <td>
+                                                            {{ $barang->kuantitas }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Jumlah Foto</b></td>
+                                                        <td>
+                                                            {{ $barang->jumlah_foto }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Status Penggunaan</b></td>
+                                                        <td>
+                                                            {{ $barang->status_penggunaan }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>No PSP</b></td>
+                                                        <td>
+                                                            {{ $barang->no_psp }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Tanggal PSP</b></td>
+                                                        <td>
+                                                            {{ Carbon::parse($barang->tanggal_psp)->locale('id')->translatedFormat('d F Y') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>No Tiket Usul PSP</b></td>
+                                                        <td>
+                                                            {{ $barang->no_tiket_usul_psp != null ? $barang->no_tiket_usul_psp : '-' }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Intra/Ekstra</b></td>
+                                                        <td>
+                                                            {{ $barang->intra_ekstra }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Status BPYBDS</b></td>
+                                                        <td>
+                                                            {{ $barang->status_bpybds }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Status Henti Guna</b></td>
+                                                        <td>
+                                                            {{ $barang->status_henti_guna }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Status Kemitraan</b></td>
+                                                        <td>
+                                                            {{ $barang->status_kemitraan }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Status Barang Hilang</b></td>
+                                                        <td>
+                                                            {{ $barang->status_barang_hilang }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Status Barang DKTP</b></td>
+                                                        <td>
+                                                            {{ $barang->status_barang_dktp }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Status Usul Rusak Berat</b></td>
+                                                        <td>
+                                                            {{ $barang->status_usul_rusak_berat }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Status Usul Hapus</b></td>
+                                                        <td>
+                                                            {{ $barang->status_usul_hapus }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Sisa Umur (Semester)</b></td>
+                                                        <td>
+                                                            {{ $barang->sisa_umur }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Status SAKTI</b></td>
+                                                        <td>
+                                                            {{ $barang->status_sakti }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Kode Register SAKTI</b></td>
+                                                        <td>
+                                                            {{ $barang->kode_register_sakti }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Lokasi Sekarang</b></td>
+                                                        <td>
+                                                            {{ $barang->lokasi != null ? $barang->lokasi : '-' }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                     <!-- END Info -->
 
@@ -250,11 +251,11 @@
                                         aria-labelledby="ecom-product-comments-tab" tabindex="0">
                                         <div class="d-flex push">
                                             <div class="block-content block-content-full">
-                                                <table
+                                                <div class="table-responsive">
+                                                    <table
                                                     class="table table-bordered table-striped table-vcenter js-dataTable-simple">
                                                     <thead>
                                                         <tr>
-                                                            <th class="text-center">No</th>
                                                             <th class="text-center">Tanggal</th>
                                                             <th class="text-center">Deskripsi</th>
                                                             <th class="text-center">Lokasi Tujuan</th>
@@ -263,7 +264,6 @@
                                                     <tbody>
                                                         @foreach ($lokasi as $lks)
                                                             <tr>
-                                                                <td class="text-center">{{ $loop->iteration }}</td>
                                                                 <td class="text-center">
                                                                     {{ Carbon::parse($lks->created_at)->locale('id')->translatedFormat('d F Y') }}
                                                                 </td>
@@ -283,6 +283,7 @@
                                                         @endforeach
                                                     </tbody>
                                                 </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

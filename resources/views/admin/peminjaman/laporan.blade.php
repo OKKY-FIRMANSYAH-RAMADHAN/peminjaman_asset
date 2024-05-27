@@ -30,8 +30,12 @@
             <!-- Dynamic Table Responsive -->
             <div class="block block-rounded">
                 <div class="block-content block-content-full">
+                    <div class="text-end">
+                        <a href="{{ route('admin.laporan.export') }}" class="btn btn-sm btn-primary mt-2 mb-5">Export
+                        Excel</a>
+                    </div>
                     <!-- DataTables init on table by adding .js-dataTable-responsive class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-                    <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
+                    <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive-custom">
                         <thead>
                             <tr>
                                 <th class="text-center">No</th>

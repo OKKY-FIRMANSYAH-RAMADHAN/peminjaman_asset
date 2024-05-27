@@ -120,29 +120,25 @@
                         <table class="table table-hover table-vcenter">
                             <thead>
                                 <tr class="text-center">
-                                    <th>No</th>
-                                    <th class="d-none d-xl-table-cell">Peminjam</th>
+                                    <th class="d-xl-table-cell">Peminjam</th>
                                     <th>Tanggal Pinjam</th>
-                                    <th class="d-none d-sm-table-cell">Tanggal Kembali</th>
-                                    <th class="d-none d-sm-table-cell">Status</th>
+                                    <th class="d-sm-table-cell">Tanggal Kembali</th>
+                                    <th class="d-sm-table-cell">Status</th>
                                 </tr>
                             </thead>
                             <tbody class="fs-sm">
                                 @foreach ($terbaru as $data)
                                     <tr class="text-center">
-                                        <td>
-                                            <p class="fs-sm fw-medium text-muted mb-0">{{ $loop->iteration }}</p>
-                                        </td>
-                                        <td class="d-none d-xl-table-cell">
+                                        <td class="d-xl-table-cell">
                                             <p class="fs-sm fw-medium text-muted mb-0">{{ $data->peminjam }}</p>
                                         </td>
                                         <td>
                                             {{ Carbon::parse($data->tanggal_pinjam)->locale('id')->translatedFormat('d F Y') }}
                                         </td>
-                                        <td class="d-none d-sm-table-cell">
+                                        <td class="d-sm-table-cell">
                                             {{ Carbon::parse($data->tanggal_kembali)->locale('id')->translatedFormat('d F Y') }}
                                         </td>
-                                        <td class="d-none d-sm-table-cell fw-semibold text-muted">
+                                        <td class="d-sm-table-cell fw-semibold text-muted">
                                           @if ($data->status === '0')
                                           <span
                                             class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-danger">Sedang Berlangsung</span>

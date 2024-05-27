@@ -55,7 +55,6 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
                         <thead>
                             <tr>
-                                <th class="text-center">No</th>
                                 <th class="no-print">Kategori</th>
                                 <th class="">Kode Barang</th>
                                 <th class="">Nama Barang</th>
@@ -143,32 +142,33 @@
                     "type": "GET",
                 },
                 "columns": [{
-                        "data": "DT_RowIndex",
-                        "className": "text-center",
-                        "orderable": false,
-                        "searchable": false
-                    },
-                    {
                         "data": "kategori",
-                        "className": "no-print"
+                        "className": "no-print",
+                        "responsivePriority": 6
                     },
                     {
-                        "data": "kode_barang"
+                        "data": "kode_barang",
+                        "responsivePriority": 1
                     },
                     {
-                        "data": "nama_barang"
+                        "data": "nama_barang",
+                        "responsivePriority": 7
                     },
                     {
-                        "data": "nup"
+                        "data": "nup",
+                        "responsivePriority": 2
                     },
                     {
-                        "data": "merek"
+                        "data": "merek",
+                        "responsivePriority": 5
                     },
                     {
-                        "data": "lokasi"
+                        "data": "lokasi",
+                        "responsivePriority": 4
                     },
                     {
-                        "data": "aksi"
+                        "data": "aksi",
+                        "responsivePriority": 3
                     }
                 ],
                 "responsive": true,

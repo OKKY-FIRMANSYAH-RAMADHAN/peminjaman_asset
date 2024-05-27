@@ -7,6 +7,8 @@ use App\Models\DetailPeminjaman;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Lokasi;
+use App\Exports\PeminjamanExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PeminjamanController extends Controller
 {
@@ -99,7 +101,7 @@ class PeminjamanController extends Controller
     }
 
     public function export(){
-        return Excel::download(new PeminjamanExport, 'peminjaman.xlsx');
+        return Excel::download(new PeminjamanExport(), 'peminjaman.xlsx');
     }
 
     /**

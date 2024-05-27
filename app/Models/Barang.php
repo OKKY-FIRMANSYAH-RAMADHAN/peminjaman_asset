@@ -27,6 +27,11 @@ class Barang extends Model
         return $this->belongsTo(Kategori::class, 'id_kategori', 'id_kategori')->select('id_kategori', 'nama_kategori');;
     }
 
+    public function detailPeminjaman()
+    {
+        return $this->hasMany(DetailPeminjaman::class, 'id_barang', 'id_barang');
+    }
+
     public function scopeWithLatestLokasi($query)
     {
         $subquery = DB::table('lokasi')

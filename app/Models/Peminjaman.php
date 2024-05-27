@@ -12,4 +12,9 @@ class Peminjaman extends Model
     protected $table = 'peminjaman';
     protected $primaryKey = 'id_peminjaman';
     protected $fillable = ['peminjam, tanggal_pinjam, tanggal_kembali, deskripsi, status'];
+
+    public function detailPeminjaman()
+    {
+        return $this->hasMany(DetailPeminjaman::class, 'id_peminjaman', 'id_peminjaman');
+    }
 }

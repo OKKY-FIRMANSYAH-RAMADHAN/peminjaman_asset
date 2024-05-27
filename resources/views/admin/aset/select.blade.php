@@ -48,20 +48,19 @@
                                 @endforeach
                             </div>
                         </div>
-                        <a href="{{route('admin.aset.export')}}" class="btn btn-sm btn-primary">Export Excel</a>
+                        <a href="{{ route('admin.aset.export') }}" class="btn btn-sm btn-primary">Export Excel</a>
                     </div>
                     <!-- DataTables init on table by adding .js-dataTable-responsive class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
                         <thead>
                             <tr>
-                                <th class="text-center">No</th>
                                 <th class="no-print">Kategori</th>
                                 <th class="">Kode Barang</th>
                                 <th class="">Nama Barang</th>
                                 <th class="">NUP</th>
                                 <th class="">Merek</th>
                                 <th>Lokasi Sekarang</th>
-                                <th>Aksi</th>
+                                <th style="width:10%;">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -142,32 +141,33 @@
                     "type": "GET",
                 },
                 "columns": [{
-                        "data": "DT_RowIndex",
-                        "className": "text-center",
-                        "orderable": false,
-                        "searchable": false
-                    },
-                    {
                         "data": "kategori",
-                        "className": "no-print"
+                        "className": "no-print",
+                        "responsivePriority": 6
                     },
                     {
-                        "data": "kode_barang"
+                        "data": "kode_barang",
+                        "responsivePriority": 1
                     },
                     {
-                        "data": "nama_barang"
+                        "data": "nama_barang",
+                        "responsivePriority": 7
                     },
                     {
-                        "data": "nup"
+                        "data": "nup",
+                        "responsivePriority": 2
                     },
                     {
-                        "data": "merek"
+                        "data": "merek",
+                        "responsivePriority": 5
                     },
                     {
-                        "data": "lokasi"
+                        "data": "lokasi",
+                        "responsivePriority": 4
                     },
                     {
-                        "data": "aksi"
+                        "data": "aksi",
+                        "responsivePriority": 3
                     }
                 ],
                 "responsive": true,

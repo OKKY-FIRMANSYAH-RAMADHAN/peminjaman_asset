@@ -38,7 +38,7 @@
                                             <option value="{{ $ktg->id_kategori }}">{{ $ktg->nama_kategori }}</option>    
                                         @endforeach
                                     </select>
-                                    <label for="example-select-floating">Pilih Kategori</label>
+                                    <label for="example-select-floating">Kategori</label>
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label" for="example-file-input">Masukkan FIle Excel</label>

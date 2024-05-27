@@ -2,22 +2,33 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/js/plugins/select2/css/select2.min.css') }}">
+    <style>
+        .table-responsive table th, .table-responsive table td {
+            padding: 1rem;
+        }
+        .table-responsive table th {
+            width: auto; /* Allows table header to resize based on content */
+        }
+        .table-responsive table td input,
+        .table-responsive table td select,
+        .table-responsive table td textarea {
+            width: 100%; /* Make input fields full width */
+        }
+    </style>
 @endsection
 
 @section('content')
     <main id="main-container">
         <!-- Hero -->
         <div class="content">
-            <div
-                class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center py-2 text-center text-md-start">
+            <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center py-2 text-center text-md-start">
                 <div class="flex-grow-1 mb-1 mb-md-0">
-
                     <h1 class="h3 fw-bold mb-1">
                         {{ $title }}
                     </h1>
                 </div>
                 <div class="mt-3 mt-md-0 ms-md-3 space-x-1">
-
+                    <!-- Additional buttons or content can go here -->
                 </div>
             </div>
         </div>
@@ -26,27 +37,23 @@
             @csrf
             <div class="content">
                 <!-- Floating Labels -->
-
                 <div class="block block-rounded">
                     <div class="block-content block-content-full">
                         <div class="col-12">
                             <div class="form-floating mb-4">
-                                <input type="text" class="form-control" id="peminjam" name="peminjam"
-                                    placeholder="Nama Peminjam" required>
+                                <input type="text" class="form-control" id="peminjam" name="peminjam" placeholder="Nama Peminjam" required>
                                 <label for="peminjam">Nama Peminjam</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <input type="date" class="form-control" id="tanggal_pinjam" name="tanggal_pinjam"
-                                    value="{{ date('Y-m-d') }}" required>
+                                <input type="date" class="form-control" id="tanggal_pinjam" name="tanggal_pinjam" value="{{ date('Y-m-d') }}" required>
                                 <label for="tanggal_pinjam">Tanggal Pinjam</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali">
-                                <label for="tanggal_kembali">Tanggal Kembali (optional)</label>
+                                <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali" required>
+                                <label for="tanggal_kembali">Tanggal Kembali</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <textarea class="form-control" id="deskripsi" name="deskripsi" style="height: 140px"
-                                    placeholder="Tulis Deskripsi Disini"></textarea>
+                                <textarea class="form-control" id="deskripsi" name="deskripsi" style="height: 140px" placeholder="Tulis Deskripsi Disini"></textarea>
                                 <label for="deskripsi">Deskripsi</label>
                             </div>
                         </div>
@@ -57,25 +64,25 @@
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
                         <h3 class="block-title">Rincian Barang</h3>
+                        <button type="button" class="btn btn-success btn-sm btn-tambah"><i class="fas fa-plus"></i></button>
                     </div>
                     <div class="block-content block-content-full">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th width="30%">Barang (NUP) </th>
-                                    <th width="20%">Lokasi Awal</th>
-                                    <th width="20%">Lokasi Tujuan</th>
-                                    <th width="25%">Deskripsi</th>
-                                    <th width="5%" class="text-center"><button type="button"
-                                            class="btn btn-success btn-sm btn-tambah"><i class="fas fa-plus"></i></button>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-center"></tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Barang (NUP)</th>
+                                        <th>Lokasi Awal</th>
+                                        <th>Lokasi Tujuan</th>
+                                        <th>Deskripsi</th>
+                                        <th class="text-center"></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
                         <div class="mt-2 text-end">
-                            <button type="submit" class="btn btn-primary" style="display: none"
-                                id="submitButton">Submit</button>
+                            <button type="submit" class="btn btn-primary" style="display: none" id="submitButton">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -87,7 +94,6 @@
 @section('javascript')
     <script src="{{ asset('assets/js/lib/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/select2/js/select2.full.min.js') }}"></script>
-    <script></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             One.helpersOnLoad(['jq-select2']);
@@ -107,20 +113,19 @@
 
             addButton.addEventListener('click', function() {
                 const newRow = document.createElement('tr');
-                newRow.classList.add('text-center');
                 newRow.innerHTML = `
-                    <td>
-                        <select class="js-select2 form-select" name="id_barang[]" style="width: 100%;" required>
-                            <option value="" selected disabled>Pilih Barang</option>
-                            @foreach ($barang as $brg)
-                                <option value="{{ $brg->id_barang }}">{{ $brg->nama_barang }} ({{ $brg->nup }})</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td><input type="text" class="form-control lokasi-awal" required name="lokasi_awal[]" placeholder="Lokasi Awal"></td>
-                    <td><input type="text" class="form-control" required name="lokasi_akhir[]" placeholder="Lokasi Tujuan" required></td>
-                    <td><textarea class="form-control" name="deskripsi_barang[]" placeholder="Deskripsi" rows="1"></textarea></td>
-                    <td><button type="button" class="btn btn-danger btn-sm delete-row"><i class="fas fa-times"></i></button></td>
+                <td>
+                    <select class="js-select2 form-select" name="id_barang[]" style="width:250px;" required>
+                        <option value="" selected disabled>Pilih Barang</option>
+                        @foreach ($barang as $brg)
+                            <option value="{{ $brg->id_barang }}">{{ $brg->nama_barang }} ({{ $brg->nup }})</option>
+                        @endforeach
+                    </select>
+                </td>
+                <td><input type="text" class="form-control lokasi-awal" style="width:250px;" required name="lokasi_awal[]" placeholder="Lokasi Awal"></td>
+                <td><input type="text" class="form-control lokasi-awal" style="width:250px; required name="lokasi_akhir[]" placeholder="Lokasi Tujuan"></td>
+                <td><textarea class="form-control" name="deskripsi_barang[]" style="width:250px;" placeholder="Deskripsi" rows="1"></textarea></td>
+                <td><button type="button" class="btn btn-danger btn-sm delete-row"><i class="fas fa-times"></i></button></td>
                 `;
                 tableBody.appendChild(newRow);
                 // Inisialisasi Select2 pada elemen baru
