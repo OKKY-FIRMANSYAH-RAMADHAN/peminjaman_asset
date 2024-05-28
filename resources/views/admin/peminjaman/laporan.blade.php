@@ -57,7 +57,7 @@
                                     <td class="text-center">{{ $pinjam->deskripsi }}</td>
                                     <td class="text-center">{!! $pinjam->status === '0' ? '<span class="text-danger">Belum Dikembalikan</span>' : '<span class="text-success">Selesai</span>' !!}</td>
                                     <td class="text-center">
-                                        <a href="" class="btn btn-sm btn-warning"><i class="fas fa-info-circle"></i></a>
+                                        <a href="{{ route('admin.peminjaman.detail', ['id' => $pinjam->id_peminjaman]) }}" class="btn btn-sm btn-warning"><i class="fas fa-info-circle"></i></a>
                                         <a href="" class="btn btn-sm btn-primary"><i class="fas fa-print"></i></a>
                                     </td>
                             @endforeach

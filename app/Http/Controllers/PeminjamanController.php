@@ -104,6 +104,15 @@ class PeminjamanController extends Controller
         return Excel::download(new PeminjamanExport(), 'peminjaman.xlsx');
     }
 
+    public function show($id) {
+        $data = [
+            'title'     => 'Detail Peminjaman',
+            'peminjaman' => Peminjaman::with(['detailPeminjaman.barang'])->where('id_peminjaman', $id)->get()
+        ];
+
+        return view('admin.peminjaman.detail',$data);
+    }
+
     /**
      * Remove the specified resource from storage.
      */

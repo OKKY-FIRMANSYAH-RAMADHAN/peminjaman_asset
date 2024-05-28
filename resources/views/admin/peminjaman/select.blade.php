@@ -47,14 +47,25 @@
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td class="text-center">{{ $pinjam->peminjam }}</td>
-                                    <td class="text-center"> {{ Carbon::parse($pinjam->tanggal_pinjam)->locale('id')->translatedFormat('d F Y') }}</td>
-                                    <td class="text-center">{{ $pinjam->tanggal_kembali === null ? 'Belum Ditentukan' : Carbon::parse($pinjam->tanggal_kembali)->locale('id')->translatedFormat('d F Y') }}</td>
+                                    <td class="text-center">
+                                        {{ Carbon::parse($pinjam->tanggal_pinjam)->locale('id')->translatedFormat('d F Y') }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ $pinjam->tanggal_kembali === null? 'Belum Ditentukan': Carbon::parse($pinjam->tanggal_kembali)->locale('id')->translatedFormat('d F Y') }}
+                                    </td>
                                     <td class="text-center">{{ $pinjam->deskripsi }}</td>
                                     <td class="text-center">
-                                        <a href="" class="btn btn-sm btn-warning"><i class="fas fa-info-circle"></i></a>
+                                        <a href="{{ route('admin.peminjaman.detail', ['id' => $pinjam->id_peminjaman]) }}"
+                                            class="btn btn-sm btn-warning"><i class="fas fa-info-circle"></i></a>
                                         <a href="" class="btn btn-sm btn-primary"><i class="fas fa-print"></i></a>
-                                        <a href="{{ route('admin.peminjaman.delete', ['id' => $pinjam->id_peminjaman])}}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus peminjaman ini?')"><i class="fas fa-trash"></i></a>
-                                        <a href="{{route('admin.update.status', ['id' => $pinjam->id_peminjaman])}}" class="btn btn-sm btn-success" onclick="return confirm('Apakah Anda yakin ingin menyelesaikan peminjaman ini? selesaikan peminjaman tidak dapat di undo')"><i class="fas fa-check-circle"></i></a>
+                                        <a href="{{ route('admin.peminjaman.delete', ['id' => $pinjam->id_peminjaman]) }}"
+                                            class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus peminjaman ini?')"><i
+                                                class="fas fa-trash"></i></a>
+                                        <a href="{{ route('admin.update.status', ['id' => $pinjam->id_peminjaman]) }}"
+                                            class="btn btn-sm btn-success"
+                                            onclick="return confirm('Apakah Anda yakin ingin menyelesaikan peminjaman ini? selesaikan peminjaman tidak dapat di undo')"><i
+                                                class="fas fa-check-circle"></i></a>
                                     </td>
                             @endforeach
                         </tbody>

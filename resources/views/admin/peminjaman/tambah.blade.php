@@ -123,7 +123,7 @@
                     </select>
                 </td>
                 <td><input type="text" class="form-control lokasi-awal" style="width:250px;" required name="lokasi_awal[]" placeholder="Lokasi Awal"></td>
-                <td><input type="text" class="form-control lokasi-awal" style="width:250px; required name="lokasi_akhir[]" placeholder="Lokasi Tujuan"></td>
+                <td><input type="text" class="form-control" style="width:250px;" required name="lokasi_akhir[]" placeholder="Lokasi Tujuan"></td>
                 <td><textarea class="form-control" name="deskripsi_barang[]" style="width:250px;" placeholder="Deskripsi" rows="1"></textarea></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row"><i class="fas fa-times"></i></button></td>
                 `;
