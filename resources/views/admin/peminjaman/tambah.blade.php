@@ -45,6 +45,18 @@
                                 <label for="peminjam">Nama Peminjam</label>
                             </div>
                             <div class="form-floating mb-4">
+                                <input type="text" class="form-control" id="instansi" name="instansi" placeholder="Asal Instansi" required>
+                                <label for="instansi">Asal Instansi</label>
+                            </div>
+                            <div class="form-floating mb-4">
+                                <textarea class="form-control" id="alamat" name="alamat" style="height: 100px" placeholder="Masukkan Alamat" required></textarea>
+                                <label for="alamat">Alamat</label>
+                            </div>
+                            <div class="form-floating mb-4">
+                                <input type="tel" class="form-control" id="no_telp" name="no_telp" placeholder="No Telepon" required pattern="\d*">
+                                <label for="no_telp">Nomor Telepon</label>
+                            </div>
+                            <div class="form-floating mb-4">
                                 <input type="date" class="form-control" id="tanggal_pinjam" name="tanggal_pinjam" value="{{ date('Y-m-d') }}" required>
                                 <label for="tanggal_pinjam">Tanggal Pinjam</label>
                             </div>
@@ -53,8 +65,8 @@
                                 <label for="tanggal_kembali">Tanggal Kembali</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <textarea class="form-control" id="deskripsi" name="deskripsi" style="height: 140px" placeholder="Tulis Deskripsi Disini"></textarea>
-                                <label for="deskripsi">Deskripsi</label>
+                                <textarea class="form-control" id="deskripsi" name="deskripsi" style="height: 50px" placeholder="Tulis Deskripsi Disini" required></textarea>
+                                <label for="deskripsi">Keperluan</label>
                             </div>
                         </div>
                     </div>
@@ -94,6 +106,12 @@
 @section('javascript')
     <script src="{{ asset('assets/js/lib/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/select2/js/select2.full.min.js') }}"></script>
+    <script>
+        document.getElementById('no_telp').addEventListener('input', function (e) {
+            const value = e.target.value;
+            e.target.value = value.replace(/\D/g, '').substring(0, 14);
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             One.helpersOnLoad(['jq-select2']);

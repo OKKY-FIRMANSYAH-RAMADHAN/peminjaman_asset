@@ -39,6 +39,7 @@ Route::post('/administrator/peminjaman/tambah', [PeminjamanController::class, 's
 Route::get('/administrator/peminjaman/status/{id}', [PeminjamanController::class, 'status'])->name('admin.update.status');
 Route::get('/administrator/peminjaman/delete/{id}', [PeminjamanController::class, 'destroy'])->name('admin.peminjaman.delete');
 Route::get('/administrator/peminjaman/detail/{id}', [PeminjamanController::class, 'show'])->name('admin.peminjaman.detail');
+Route::get('/administrator/peminjaman/print/{id}', [PeminjamanController::class, 'printPdf'])->name('admin.peminjaman.print');
 
 // Laporan
 Route::get('/administrator/laporan', [PeminjamanController::class, 'laporan'])->name('admin.laporan');

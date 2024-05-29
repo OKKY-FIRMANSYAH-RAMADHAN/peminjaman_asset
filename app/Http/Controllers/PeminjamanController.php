@@ -9,6 +9,7 @@ use App\Models\Barang;
 use App\Models\Lokasi;
 use App\Exports\PeminjamanExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PeminjamanController extends Controller
 {
@@ -32,6 +33,9 @@ class PeminjamanController extends Controller
         // Store ke tabel Peminjaman
         $peminjaman = new Peminjaman();
         $peminjaman->peminjam = $request->peminjam;
+        $peminjaman->instansi = $request->instansi;
+        $peminjaman->alamat = $request->alamat;
+        $peminjaman->no_telp = $request->no_telp;
         $peminjaman->tanggal_pinjam = $request->tanggal_pinjam;
         $peminjaman->tanggal_kembali = $request->tanggal_kembali;
         $peminjaman->deskripsi = $request->deskripsi;
@@ -111,6 +115,21 @@ class PeminjamanController extends Controller
         ];
 
         return view('admin.peminjaman.detail',$data);
+    }
+
+    public function printPdf($id) {
+        $path = public_path().'/assets/media/pupr.png';
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+
+
+        $data = [
+            'logo' => 'data:image/'. $type . ';base64,'. base64_encode($data),
+            'peminjaman' => Peminjaman::with(['detailPeminjaman.barang'])->where('id_peminjaman', $id)->get()
+        ];
+
+        $pdf = Pdf::loadView('admin.peminjaman.viewPdf',$data);
+        return $pdf->stream();
     }
 
     /**

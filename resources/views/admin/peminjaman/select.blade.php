@@ -57,7 +57,7 @@
                                     <td class="text-center">
                                         <a href="{{ route('admin.peminjaman.detail', ['id' => $pinjam->id_peminjaman]) }}"
                                             class="btn btn-sm btn-warning"><i class="fas fa-info-circle"></i></a>
-                                        <a href="" class="btn btn-sm btn-primary"><i class="fas fa-print"></i></a>
+                                        <a target="_blank" href="{{ route('admin.peminjaman.print', ['id' => $pinjam->id_peminjaman]) }}" class="btn btn-sm btn-primary"><i class="fas fa-print"></i></a>
                                         <a href="{{ route('admin.peminjaman.delete', ['id' => $pinjam->id_peminjaman]) }}"
                                             class="btn btn-sm btn-danger"
                                             onclick="return confirm('Apakah Anda yakin ingin menghapus peminjaman ini?')"><i

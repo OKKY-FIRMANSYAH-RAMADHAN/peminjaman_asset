@@ -71,7 +71,10 @@
                                 {{ Carbon::parse($peminjaman[0]->tanggal_pinjam)->locale('id')->translatedFormat('d F Y') }}<br>
                                 <b>Tanggal Kembali</b> :
                                 {{ $peminjaman[0]->tanggal_kembali === null? 'Belum Ditentukan': Carbon::parse($peminjaman[0]->tanggal_kembali)->locale('id')->translatedFormat('d F Y') }}<br>
-                                <b>Deskripsi </b> : {{ $peminjaman[0]->deskripsi }}
+                                <b>Keperluan </b> : {{ $peminjaman[0]->deskripsi }}
+                                <br>
+                                <b>Alamat</b> : {{$peminjaman[0]->alamat}}<br>
+                                    <i class="fa fa-phone"></i> {{$peminjaman[0]->no_telp}}<br>
                             </address>
                         </div>
                     </div>
@@ -86,11 +89,11 @@
                             <div class="block block-rounded block-link-shadow text-center">
                                 <div class="block-content block-content-full">
                                     <div class="item item-circle bg-warning-light mx-auto">
-                                        <i class="fa fa-sync fa-spin text-warning"></i>
+                                        <i class="fa fa-sync fa-spin text-warning fa-xl"></i>
                                     </div>
                                 </div>
                                 <div class="block-content py-2 bg-body-light">
-                                    <p class="fw-medium fs-sm text-warning mb-0">
+                                    <p class="fw-medium fs-md text-warning mb-0">
                                         Sedang Berlangsung
                                     </p>
                                 </div>
@@ -99,11 +102,11 @@
                             <div class="block block-rounded block-link-shadow text-center">
                                 <div class="block-content block-content-full">
                                     <div class="item item-circle bg-success-light mx-auto">
-                                        <i class="fa fa-check text-success"></i>
+                                        <i class="fa fa-check text-success fa-xl"></i>
                                     </div>
                                 </div>
-                                <div class="block-content py-2 bg-body-light">
-                                    <p class="fw-medium fs-sm text-success mb-0">
+                                <div class="block-content py-2 bg-body-light ">
+                                    <p class="fw-medium fs-md text-success mb-0">
                                         Selesai
                                     </p>
                                 </div>
@@ -150,7 +153,7 @@
             </div>
             <div class="text-end mb-5">
                 <a href="{{ url()->previous() }}" class="btn btn-sm btn-danger"><i class="fas fa-arrow-left"></i> Kembali</a>
-                <a href="" class="btn btn-sm btn-success"><i class="fas fa-print"></i> Cetak</a>
+                <a target="_blank" href="{{ route('admin.peminjaman.print', ['id' => $peminjaman[0]->id_peminjaman]) }}" class="btn btn-sm btn-success"><i class="fas fa-print"></i> Cetak</a>
             </div>
             <!-- END Products -->
         </div>

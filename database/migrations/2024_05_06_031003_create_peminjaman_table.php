@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->uuid('id_peminjaman')->primary();
             $table->string('peminjam', 255);
+            $table->string('instansi', 255);
+            $table->string('alamat', 255);
+            $table->string('no_telp', 255);
             $table->date('tanggal_pinjam');
-            $table->date('tanggal_kembali')->nullable();
+            $table->date('tanggal_kembali');
             $table->text('deskripsi')->nullable();
             $table->enum('status', ['0', '1'])->default('0');
             $table->timestamps();
