@@ -46,8 +46,8 @@
                                     <td class="text-center fs-sm">{{ $loop->iteration }}</td>
                                     <td>{{ $ktg->nama_kategori }}</td>
                                     <td class="fw-semibold fs-sm">
-                                        <button type="button" class="btn btn-sm btn-alt-secondary editButton" data-id="{{ $ktg->id_kategori }}" data-name="{{ $ktg->nama_kategori }}"><i class="fa fa-fw fa-pencil-alt"></i></button>
-                                        <a href="{{ route('admin.kategori.delete', ['id' => $ktg->id_kategori]) }}" class="btn btn-sm btn-alt-secondary" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini? Menghapus kategori berpengaruh terhadap data yang berelasi')"><i class="fa fa-fw fa-times"></i></a>
+                                        <button type="button" class="btn btn-sm btn-warning editButton" data-id="{{ $ktg->id_kategori }}" data-name="{{ $ktg->nama_kategori }}"><i class="fa fa-fw fa-pencil-alt"></i></button>
+                                        <a href="{{ route('admin.kategori.delete', ['id' => $ktg->id_kategori]) }}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini? Menghapus kategori berpengaruh terhadap data yang berelasi')"><i class="fa fa-fw fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

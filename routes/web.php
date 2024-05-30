@@ -22,6 +22,7 @@ Route::get('/administrator/kategori/delete/{id}', [KategoriController::class, 'd
 // Asset
 Route::get('/administrator/aset', [AsetController::class, 'index'])->name('admin.data.aset');
 Route::get('/administrator/aset/detail/{id}', [AsetController::class, 'show'])->name('admin.detail.aset');
+Route::get('/administrator/aset/delete/{id}', [AsetController::class, 'destroy'])->name('admin.aset.delete');
 Route::get('/administrator/aset/kategori/{slug}', [AsetController::class, 'showByKategori'])->name('admin.data.aset.kategori');
 Route::get('/administrator/aset/import', [AsetController::class, 'viewImport'])->name('admin.import.aset');
 Route::post('/administrator/aset/import', [AsetController::class, 'import']);

@@ -31,7 +31,9 @@ class AsetController extends Controller
                     return $lokasi . ' ' . $editButton;
                 })
                 ->addColumn('aksi', function ($row) {
-                    return '<a href="' . route('admin.detail.aset', $row->id_barang) . '" class="btn btn-sm btn-warning"><i class="fas fa-info-circle"></i></a>';
+                    $detail = '<a href="' . route('admin.detail.aset', $row->id_barang) . '" class="btn btn-sm btn-warning"><i class="fas fa-info-circle"></i></a>';
+                    $delete = '<a href="' . route('admin.aset.delete', ['id' => $row->id_barang]) . '" class="btn btn-sm btn-danger" onclick="return confirm(\'Apakah Anda yakin ingin menghapus barang ini? Menghapus barang akan berpengaruh terhadap data yang berelasi\')"><i class="fa fa-fw fa-trash"></i></a>';
+                    return $detail . ' ' . $delete;
                 })
                 ->rawColumns(['lokasi', 'aksi'])
                 ->make(true);
@@ -86,7 +88,9 @@ class AsetController extends Controller
                     return $lokasi . ' ' . $editButton;
                 })
                 ->addColumn('aksi', function ($row) {
-                    return '<a href="' . route('admin.detail.aset', $row->id_barang) . '" class="btn btn-sm btn-warning"><i class="fas fa-info-circle"></i></a>';
+                    $detail = '<a href="' . route('admin.detail.aset', $row->id_barang) . '" class="btn btn-sm btn-warning"><i class="fas fa-info-circle"></i></a>';
+                    $delete = '<a href="' . route('admin.aset.delete', ['id' => $row->id_barang]) . '" class="btn btn-sm btn-danger" onclick="return confirm(\'Apakah Anda yakin ingin menghapus barang ini? Menghapus barang akan berpengaruh terhadap data yang berelasi\')"><i class="fa fa-fw fa-trash"></i></a>';
+                    return $detail . ' ' . $delete;
                 })
                 ->rawColumns(['lokasi', 'aksi'])
                 ->make(true);
@@ -123,5 +127,13 @@ class AsetController extends Controller
         $dateTime = Carbon::now('Asia/Jakarta')->format('d-m-Y'); 
         $filename = "{$dateTime}_data aset {$slug}.xlsx";
         return Excel::download(new AsetExport($kategori->id_kategori), $filename);
+    }
+
+    public function destroy($id){
+        $delete = Barang::destroy($id);
+        if ($delete) {
+            return redirect()->back()->with('success', 'Berhasil Menghapus Data Barang');
+        }
+            
     }
 }

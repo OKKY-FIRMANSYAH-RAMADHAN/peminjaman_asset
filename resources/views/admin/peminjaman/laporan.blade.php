@@ -53,7 +53,7 @@
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td class="text-center">{{ $pinjam->peminjam }}</td>
                                     <td class="text-center"> {{ Carbon::parse($pinjam->tanggal_pinjam)->locale('id')->translatedFormat('d F Y') }}</td>
-                                    <td class="text-center">{{ $pinjam->tanggal_kembali === null ? 'Belum Ditentukan' : Carbon::parse($pinjam->tanggal_kembali)->locale('id')->translatedFormat('d F Y') }}</td>
+                                    <td class="text-center">{{ Carbon::parse($pinjam->updated_at)->locale('id')->translatedFormat('d F Y') }}</td>
                                     <td class="text-center">{{ $pinjam->deskripsi }}</td>
                                     <td class="text-center">{!! $pinjam->status === '0' ? '<span class="text-danger">Belum Dikembalikan</span>' : '<span class="text-success">Selesai</span>' !!}</td>
                                     <td class="text-center">

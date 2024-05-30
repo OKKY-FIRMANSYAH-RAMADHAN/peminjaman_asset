@@ -113,15 +113,25 @@
                     </tbody>
                 </table>
 
-                <p>Untuk keperluan : {{$peminjaman[0]->deskripsi == null ? 'kegiatan melaksanakan tugas panitia' : $peminjaman[0]->deskripsi}}</p>
+                <p>Untuk keperluan :
+                    {{ $peminjaman[0]->deskripsi == null ? 'kegiatan melaksanakan tugas panitia' : $peminjaman[0]->deskripsi }}
+                </p>
 
                 <table style="border-collapse: collapse; width: 100%; border: 1px solid black;">
                     <thead style="border: 1px solid black; text-align: center;">
                         <tr>
                             <th style="border: 1px solid black;">Tanggal Pinjam : <br> <span
-                                    style="font-weight: normal;">{{ Carbon::parse($peminjaman[0]->tanggal_pinjam)->locale('id')->translatedFormat('d F Y') }}</span></th>
+                                    style="font-weight: normal;">{{ Carbon::parse($peminjaman[0]->tanggal_pinjam)->locale('id')->translatedFormat('d F Y') }}</span>
+                            </th>
                             <th style="border: 1px solid black;">Tanggal Kembali : <br> <span
-                                    style="font-weight: normal;">{{ Carbon::parse($peminjaman[0]->tanggal_kembali)->locale('id')->translatedFormat('d F Y') }}</span></th>
+                                    style="font-weight: normal;">
+                                    @if (Carbon::parse($peminjaman[0]->tanggal_kembali)->locale('id')->translatedFormat('d F Y') === Carbon::parse($peminjaman[0]->updated_at)->locale('id')->translatedFormat('d F Y'))
+                                        {{ Carbon::parse($peminjaman[0]->tanggal_kembali)->locale('id')->translatedFormat('d F Y') }}
+                                    @else
+                                        {{ Carbon::parse($peminjaman[0]->updated_at)->locale('id')->translatedFormat('d F Y') }}
+                                    @endif
+                                    
+                                </span></th>
                             <th style="border: 1px solid black;">Keterangan</th>
                         </tr>
                     </thead>
@@ -151,14 +161,16 @@
                     <tr>
                         <td><br><br>Pengelola Asrama</td>
                         <td></td>
-                        <td>Surabaya, {{ Carbon::parse(date("Y-m-d"))->locale('id')->translatedFormat('d F Y') }}<br><br>Pengguna BMN</td>
+                        <td>Surabaya,
+                            {{ Carbon::parse(date('Y-m-d'))->locale('id')->translatedFormat('d F Y') }}<br><br>Pengguna
+                            BMN</td>
                     </tr>
                 </thead>
                 <tbody style="text-align: center; text-indent: 5px;">
                     <tr>
                         <td style="height:175px; vertical-align:bottom">Ispamuji <br>NIP. 197004242007011003</td>
                         <td style="height:50px; width: 160px;"></td>
-                        <td style="height:50px; vertical-align:bottom">{{$peminjaman[0]->peminjam}} <br>NIP. <span
+                        <td style="height:50px; vertical-align:bottom">{{ $peminjaman[0]->peminjam }} <br>NIP. <span
                                 style="color:white">197004242007011</span> </td>
                     </tr>
                 </tbody>

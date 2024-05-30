@@ -69,12 +69,20 @@
                             <address class="fs-sm py-1">
                                 <b>Tanggal Pinjam</b> :
                                 {{ Carbon::parse($peminjaman[0]->tanggal_pinjam)->locale('id')->translatedFormat('d F Y') }}<br>
-                                <b>Tanggal Kembali</b> :
-                                {{ $peminjaman[0]->tanggal_kembali === null? 'Belum Ditentukan': Carbon::parse($peminjaman[0]->tanggal_kembali)->locale('id')->translatedFormat('d F Y') }}<br>
+                                @if (Carbon::parse($peminjaman[0]->tanggal_kembali)->locale('id')->translatedFormat('d F Y') ===
+                                        Carbon::parse($peminjaman[0]->updated_at)->locale('id')->translatedFormat('d F Y'))
+                                    <b>Tanggal Kembali</b> :
+                                    {{ Carbon::parse($peminjaman[0]->tanggal_kembali)->locale('id')->translatedFormat('d F Y') }}<br>
+                                @else
+                                    <b>Rencana Tanggal Kembali</b> :
+                                    {{ Carbon::parse($peminjaman[0]->tanggal_kembali)->locale('id')->translatedFormat('d F Y') }}<br>
+                                    <b>Tanggal Kembali</b> :
+                                    {{ Carbon::parse($peminjaman[0]->updated_at)->locale('id')->translatedFormat('d F Y') }}<br>
+                                @endif
                                 <b>Keperluan </b> : {{ $peminjaman[0]->deskripsi }}
                                 <br>
-                                <b>Alamat</b> : {{$peminjaman[0]->alamat}}<br>
-                                    <i class="fa fa-phone"></i> {{$peminjaman[0]->no_telp}}<br>
+                                <b>Alamat</b> : {{ $peminjaman[0]->alamat }}<br>
+                                <i class="fa fa-phone"></i> {{ $peminjaman[0]->no_telp }}<br>
                             </address>
                         </div>
                     </div>
@@ -142,7 +150,7 @@
                                         <td class="text-center">{{ $detail->barang->kode_barang }}</td>
                                         <td class="text-center">{{ $detail->barang->nup }}</td>
                                         <td class="text-center">{{ $detail->lokasi_awal }}</td>
-                                        <td class="text-center">{{ $detail->lokasi_akhir}}</td>
+                                        <td class="text-center">{{ $detail->lokasi_akhir }}</td>
                                         <td class="text-center">{{ $detail->deskripsi }}</td>
                                     </tr>
                                 @endforeach
@@ -152,8 +160,10 @@
                 </div>
             </div>
             <div class="text-end mb-5">
-                <a href="{{ url()->previous() }}" class="btn btn-sm btn-danger"><i class="fas fa-arrow-left"></i> Kembali</a>
-                <a target="_blank" href="{{ route('admin.peminjaman.print', ['id' => $peminjaman[0]->id_peminjaman]) }}" class="btn btn-sm btn-success"><i class="fas fa-print"></i> Cetak</a>
+                <a href="{{ url()->previous() }}" class="btn btn-sm btn-danger"><i class="fas fa-arrow-left"></i>
+                    Kembali</a>
+                <a target="_blank" href="{{ route('admin.peminjaman.print', ['id' => $peminjaman[0]->id_peminjaman]) }}"
+                    class="btn btn-sm btn-success"><i class="fas fa-print"></i> Cetak</a>
             </div>
             <!-- END Products -->
         </div>
