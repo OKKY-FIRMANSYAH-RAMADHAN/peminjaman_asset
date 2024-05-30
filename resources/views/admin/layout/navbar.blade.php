@@ -83,7 +83,7 @@
                     </a>
                 </li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{route('admin.peminjaman.detail', ['id' => '9c1a2e07-3fc4-44ee-a932-ae58df5bd862'])}}">
+                    <a class="nav-main-link {{ Route::currentRouteName() === 'admin.data.pengguna'? 'active' : '' }}" href="{{route('admin.data.pengguna')}}">
                         <i class="nav-main-link-icon si si-users"></i>
                         <span class="nav-main-link-name">Pengguna</span>
                     </a>

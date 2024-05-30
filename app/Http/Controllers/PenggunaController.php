@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengguna;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PenggunaController extends Controller
 {
@@ -12,15 +13,12 @@ class PenggunaController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $data = [
+            'title'     => 'List Data Pengguna',
+            'pengguna'  => Pengguna::all()
+        ];
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view('admin.pengguna.select', $data);
     }
 
     /**
@@ -28,38 +26,51 @@ class PenggunaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Pengguna $pengguna)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pengguna $pengguna)
-    {
-        //
+        $pengguna = new Pengguna();
+        $pengguna->nama = $request->nama;
+        $pengguna->username = $request->username;
+        $pengguna->email = $request->email;
+        $pengguna->password = Hash::make($request->password);
+        $save = $pengguna->save();
+        
+        if ($save) {
+            session()->flash('success', 'Berhasil Menambah Data Pengguna');
+            return redirect()->route('admin.data.pengguna');
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pengguna $pengguna)
+    public function update(Request $request)
     {
-        //
+        $pengguna = Pengguna::find($request->id_pengguna);
+        $pengguna->nama = $request->nama;
+        $pengguna->username = $request->username;
+        $pengguna->email = $request->email;
+
+        if ($request->password) {
+            $pengguna->password = Hash::make($request->password);
+        }
+
+        $update = $pengguna->save();
+
+        if ($update) {
+            session()->flash('success', 'Berhasil Mengubah Data Pengguna');
+            return redirect()->route('admin.data.pengguna');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pengguna $pengguna)
+    public function destroy($id)
     {
-        //
+        $delete = Pengguna::destroy($id);
+        if ($delete) {
+            session()->flash('success', 'Berhasil Menghapus Data Pengguna');
+            return redirect()->route('admin.data.pengguna');
+        }
+            
     }
 }

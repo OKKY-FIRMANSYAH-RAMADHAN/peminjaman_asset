@@ -6,6 +6,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\AsetController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\PenggunaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -45,3 +46,9 @@ Route::get('/administrator/peminjaman/print/{id}', [PeminjamanController::class,
 // Laporan
 Route::get('/administrator/laporan', [PeminjamanController::class, 'laporan'])->name('admin.laporan');
 Route::get('/administrator/laporan/export', [PeminjamanController::class, 'export'])->name('admin.laporan.export');
+
+// Pengguna
+Route::get('/administrator/pengguna', [PenggunaController::class, 'index'])->name('admin.data.pengguna');
+Route::post('/administrator/pengguna', [PenggunaController::class, 'store']);
+Route::post('/administrator/pengguna/update', [PenggunaController::class, 'update'])->name('admin.pengguna.update');
+Route::get('/administrator/pengguna/delete/{id}', [PenggunaController::class, 'destroy'])->name('admin.pengguna.delete');
