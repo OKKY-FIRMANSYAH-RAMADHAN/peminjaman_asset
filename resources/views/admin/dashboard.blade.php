@@ -14,7 +14,7 @@
                         Dashboard
                     </h1>
                     <h2 class="h6 fw-medium fw-medium text-muted mb-0">
-                        Welcome <a class="fw-semibold">John</a>, everything looks great.
+                        Welcome <a class="fw-semibold">{{ session()->get('nama') }}</a>, everything looks great.
                     </h2>
                 </div>
             </div>
@@ -99,21 +99,6 @@
                     <div class="block-options space-x-1">
                     </div>
                 </div>
-                <div id="one-dashboard-search-orders" class="block-content border-bottom d-none">
-                    <!-- Search Form -->
-                    <form action="be_pages_dashboard.html" method="POST" onsubmit="return false;">
-                        <div class="push">
-                            <div class="input-group">
-                                <input type="text" class="form-control form-control-alt" id="one-ecom-orders-search"
-                                    name="one-ecom-orders-search" placeholder="Search all orders..">
-                                <span class="input-group-text bg-body border-0">
-                                    <i class="fa fa-search"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
-                    <!-- END Search Form -->
-                </div>
                 <div class="block-content block-content-full">
                     <!-- Recent Orders Table -->
                     <div class="table-responsive">
@@ -139,15 +124,19 @@
                                             {{ Carbon::parse($data->tanggal_kembali)->locale('id')->translatedFormat('d F Y') }}
                                         </td>
                                         <td class="d-sm-table-cell fw-semibold text-muted">
-                                          @if ($data->status === '0')
-                                          <span
-                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-danger">Sedang Berlangsung</span>
-                                        @else
-                                        <span
-                                        class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success text-white">Selesai</span>
-                                        @endif</td>
+                                            @if ($data->status === '0')
+                                                <span
+                                                    class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-danger">Sedang
+                                                    Berlangsung</span>
+                                            @else
+                                                <span
+                                                    class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success text-white">Selesai</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
+
+
                             </tbody>
                         </table>
                     </div>

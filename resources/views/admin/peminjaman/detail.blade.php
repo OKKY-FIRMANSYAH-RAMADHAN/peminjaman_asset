@@ -69,8 +69,7 @@
                             <address class="fs-sm py-1">
                                 <b>Tanggal Pinjam</b> :
                                 {{ Carbon::parse($peminjaman[0]->tanggal_pinjam)->locale('id')->translatedFormat('d F Y') }}<br>
-                                @if (Carbon::parse($peminjaman[0]->tanggal_kembali)->locale('id')->translatedFormat('d F Y') ===
-                                        Carbon::parse($peminjaman[0]->updated_at)->locale('id')->translatedFormat('d F Y'))
+                                @if ($peminjaman[0]->status === '0')
                                     <b>Tanggal Kembali</b> :
                                     {{ Carbon::parse($peminjaman[0]->tanggal_kembali)->locale('id')->translatedFormat('d F Y') }}<br>
                                 @else

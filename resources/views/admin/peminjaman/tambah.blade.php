@@ -2,17 +2,23 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/js/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/flatpickr/flatpickr.min.css') }}">
     <style>
-        .table-responsive table th, .table-responsive table td {
+        .table-responsive table th,
+        .table-responsive table td {
             padding: 1rem;
         }
+
         .table-responsive table th {
-            width: auto; /* Allows table header to resize based on content */
+            width: auto;
+            /* Allows table header to resize based on content */
         }
+
         .table-responsive table td input,
         .table-responsive table td select,
         .table-responsive table td textarea {
-            width: 100%; /* Make input fields full width */
+            width: 100%;
+            /* Make input fields full width */
         }
     </style>
 @endsection
@@ -21,7 +27,8 @@
     <main id="main-container">
         <!-- Hero -->
         <div class="content">
-            <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center py-2 text-center text-md-start">
+            <div
+                class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center py-2 text-center text-md-start">
                 <div class="flex-grow-1 mb-1 mb-md-0">
                     <h1 class="h3 fw-bold mb-1">
                         {{ $title }}
@@ -41,31 +48,34 @@
                     <div class="block-content block-content-full">
                         <div class="col-12">
                             <div class="form-floating mb-4">
-                                <input type="text" class="form-control" id="peminjam" name="peminjam" placeholder="Nama Peminjam" required>
+                                <input type="text" class="form-control" id="peminjam" name="peminjam"
+                                    placeholder="Nama Peminjam" required>
                                 <label for="peminjam">Nama Peminjam</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <input type="text" class="form-control" id="instansi" name="instansi" placeholder="Asal Instansi" required>
+                                <input type="text" class="form-control" id="instansi" name="instansi"
+                                    placeholder="Asal Instansi" required>
                                 <label for="instansi">Asal Instansi</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <textarea class="form-control" id="alamat" name="alamat" style="height: 100px" placeholder="Masukkan Alamat" required></textarea>
+                                <textarea class="form-control" id="alamat" name="alamat" style="height: 100px" placeholder="Masukkan Alamat"
+                                    required></textarea>
                                 <label for="alamat">Alamat</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <input type="tel" class="form-control" id="no_telp" name="no_telp" placeholder="No Telepon" required pattern="\d*">
+                                <input type="tel" class="form-control" id="no_telp" name="no_telp"
+                                    placeholder="No Telepon" required pattern="\d*">
                                 <label for="no_telp">Nomor Telepon</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <input type="date" class="form-control" id="tanggal_pinjam" name="tanggal_pinjam" value="{{ date('Y-m-d') }}" required>
-                                <label for="tanggal_pinjam">Tanggal Pinjam</label>
+                                <input type="text" class="js-flatpickr form-control" id="tanggal"
+                                    name="tanggal" placeholder="Pilih Rentang Tanggal" data-mode="range"
+                                    data-min-date="today" data-date-format="d/m/Y">
+                                <label for="tanggal_kembali">Pilih Tanggal</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali" required>
-                                <label for="tanggal_kembali">Tanggal Kembali</label>
-                            </div>
-                            <div class="form-floating mb-4">
-                                <textarea class="form-control" id="deskripsi" name="deskripsi" style="height: 50px" placeholder="Tulis Deskripsi Disini" required></textarea>
+                                <textarea class="form-control" id="deskripsi" name="deskripsi" style="height: 50px" placeholder="Tulis Deskripsi Disini"
+                                    required></textarea>
                                 <label for="deskripsi">Keperluan</label>
                             </div>
                         </div>
@@ -76,7 +86,8 @@
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
                         <h3 class="block-title">Rincian Barang</h3>
-                        <button type="button" class="btn btn-success btn-sm btn-tambah"><i class="fas fa-plus"></i></button>
+                        <button type="button" class="btn btn-success btn-sm btn-tambah"><i
+                                class="fas fa-plus"></i></button>
                     </div>
                     <div class="block-content block-content-full">
                         <div class="table-responsive">
@@ -94,7 +105,8 @@
                             </table>
                         </div>
                         <div class="mt-2 text-end">
-                            <button type="submit" class="btn btn-primary" style="display: none" id="submitButton">Submit</button>
+                            <button type="submit" class="btn btn-primary" style="display: none"
+                                id="submitButton">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -106,15 +118,16 @@
 @section('javascript')
     <script src="{{ asset('assets/js/lib/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/select2/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
     <script>
-        document.getElementById('no_telp').addEventListener('input', function (e) {
+        document.getElementById('no_telp').addEventListener('input', function(e) {
             const value = e.target.value;
             e.target.value = value.replace(/\D/g, '').substring(0, 14);
         });
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            One.helpersOnLoad(['jq-select2']);
+            One.helpersOnLoad(['jq-select2', 'js-flatpickr']);
 
             const addButton = document.querySelector('.btn-tambah');
             const tableBody = document.querySelector('tbody');
@@ -146,15 +159,11 @@
                 <td><button type="button" class="btn btn-danger btn-sm delete-row"><i class="fas fa-times"></i></button></td>
                 `;
                 tableBody.appendChild(newRow);
-                // Inisialisasi Select2 pada elemen baru
                 const selectElement = $(newRow).find('.js-select2');
                 selectElement.select2();
 
-                // Tambahkan event listener untuk log id barang saat dipilih
                 selectElement.on('change', function() {
                     const selectedId = this.value;
-
-                    // Lakukan XHR request untuk mendapatkan informasi barang
                     const xhr = new XMLHttpRequest();
                     xhr.open('GET', `/administrator/get-lokasi/${selectedId}`, true);
                     xhr.onload = function() {

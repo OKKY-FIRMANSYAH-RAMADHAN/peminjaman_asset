@@ -10,6 +10,7 @@ use App\Models\Lokasi;
 use App\Exports\PeminjamanExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class PeminjamanController extends Controller
 {
@@ -31,13 +32,19 @@ class PeminjamanController extends Controller
     public function store(Request $request)
     {
         // Store ke tabel Peminjaman
+        $dateRange = $request->tanggal;
+        list($tanggal_pinjam, $tanggal_kembali) = explode(' to ', $dateRange);
+
+        $tanggal_pinjam = Carbon::createFromFormat('d/m/Y', $tanggal_pinjam)->format('Y-m-d');
+        $tanggal_kembali = Carbon::createFromFormat('d/m/Y', $tanggal_kembali)->format('Y-m-d');
+
         $peminjaman = new Peminjaman();
         $peminjaman->peminjam = $request->peminjam;
         $peminjaman->instansi = $request->instansi;
         $peminjaman->alamat = $request->alamat;
         $peminjaman->no_telp = $request->no_telp;
-        $peminjaman->tanggal_pinjam = $request->tanggal_pinjam;
-        $peminjaman->tanggal_kembali = $request->tanggal_kembali;
+        $peminjaman->tanggal_pinjam = $tanggal_pinjam;
+        $peminjaman->tanggal_kembali = $tanggal_kembali;
         $peminjaman->deskripsi = $request->deskripsi;
         $peminjaman->save();
         
