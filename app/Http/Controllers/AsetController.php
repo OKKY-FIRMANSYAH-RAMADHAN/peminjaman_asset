@@ -115,6 +115,13 @@ class AsetController extends Controller
         return view('admin.aset.detail', $data);
     }
 
+    public function getNupByName(Request $request)
+    {
+        $name = $request->input('name');
+        $nup = Barang::select('nup','id_barang')->where('nama_barang', $name)->get();
+        return response()->json($nup);
+    }
+
     public function export()
     {
         $dateTime = Carbon::now('Asia/Jakarta')->format('d-m-Y'); 

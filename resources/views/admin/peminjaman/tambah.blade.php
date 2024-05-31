@@ -68,9 +68,9 @@
                                 <label for="no_telp">Nomor Telepon</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <input type="text" class="js-flatpickr form-control" id="tanggal"
-                                    name="tanggal" placeholder="Pilih Rentang Tanggal" data-mode="range"
-                                    data-min-date="today" data-date-format="d/m/Y">
+                                <input type="text" class="js-flatpickr form-control" id="tanggal" name="tanggal"
+                                    placeholder="Pilih Rentang Tanggal" data-mode="range" data-min-date="today"
+                                    data-date-format="d/m/Y" required>
                                 <label for="tanggal_kembali">Pilih Tanggal</label>
                             </div>
                             <div class="form-floating mb-4">
@@ -94,7 +94,8 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Barang (NUP)</th>
+                                        <th>Barang </th>
+                                        <th>NUP </th>
                                         <th>Lokasi Awal</th>
                                         <th>Lokasi Tujuan</th>
                                         <th>Deskripsi</th>
@@ -118,7 +119,7 @@
 @section('javascript')
     <script src="{{ asset('assets/js/lib/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/select2/js/select2.full.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/flatpickr/flatpickr.min.js') }}"></script>
     <script>
         document.getElementById('no_telp').addEventListener('input', function(e) {
             const value = e.target.value;
@@ -146,11 +147,16 @@
                 const newRow = document.createElement('tr');
                 newRow.innerHTML = `
                 <td>
-                    <select class="js-select2 form-select" name="id_barang[]" style="width:250px;" required>
+                    <select class="js-select2 form-select select-barang" name="id_barang[]" style="width:230px;" required>
                         <option value="" selected disabled>Pilih Barang</option>
-                        @foreach ($barang as $brg)
-                            <option value="{{ $brg->id_barang }}">{{ $brg->nama_barang }} ({{ $brg->nup }})</option>
+                        @foreach ($nama_barang as $nama_brg)
+                            <option value="{{ $nama_brg->nama_barang }}">{{ $nama_brg->nama_barang }}</option>
                         @endforeach
+                    </select>
+                </td>
+                <td>
+                    <select class="js-select2 form-select select-nup" name="nup[]" style="width:100px;" required>
+                        <option value="" selected disabled>NUP</option>
                     </select>
                 </td>
                 <td><input type="text" class="form-control lokasi-awal" style="width:250px;" required name="lokasi_awal[]" placeholder="Lokasi Awal"></td>
@@ -159,10 +165,40 @@
                 <td><button type="button" class="btn btn-danger btn-sm delete-row"><i class="fas fa-times"></i></button></td>
                 `;
                 tableBody.appendChild(newRow);
-                const selectElement = $(newRow).find('.js-select2');
+                const selectElement = $(newRow).find('.select-barang');
                 selectElement.select2();
 
                 selectElement.on('change', function() {
+                    const name = this.value;
+                    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/administrator/aset/get-nup', true);
+                    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                    xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            const data = JSON.parse(xhr.responseText);
+                            const nupSelect = newRow.querySelector('.select-nup');
+                            nupSelect.innerHTML =
+                                '<option value="" selected disabled>NUP</option>'; 
+
+                            data.forEach(item => {
+                                const option = document.createElement('option');
+                                option.value = item.id_barang;
+                                option.textContent = item.nup;
+                                nupSelect.appendChild(option);
+                            });
+
+                            $(nupSelect).select2();
+                        } 
+                    };
+                    xhr.send(JSON.stringify({
+                        name: name
+                    }));
+                });
+
+                const selectNup = $(newRow).find('.select-nup');
+                selectNup.on('change', function() {
                     const selectedId = this.value;
                     const xhr = new XMLHttpRequest();
                     xhr.open('GET', `/administrator/get-lokasi/${selectedId}`, true);
@@ -179,12 +215,7 @@
                                 lokasiAwalInput.placeholder = "Tentukan Lokasi";
                                 lokasiAwalInput.readOnly = false;
                             }
-                        } else {
-                            console.error('Error fetching data:', xhr.statusText);
-                        }
-                    };
-                    xhr.onerror = function() {
-                        console.error('Request failed');
+                        } 
                     };
                     xhr.send();
                 });

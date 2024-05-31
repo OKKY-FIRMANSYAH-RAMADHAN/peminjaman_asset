@@ -121,7 +121,11 @@
                                             {{ Carbon::parse($data->tanggal_pinjam)->locale('id')->translatedFormat('d F Y') }}
                                         </td>
                                         <td class="d-sm-table-cell">
+                                            @if ($data->status === '0')
                                             {{ Carbon::parse($data->tanggal_kembali)->locale('id')->translatedFormat('d F Y') }}
+                                            @else
+                                            {{ Carbon::parse($data->updated_at)->locale('id')->translatedFormat('d F Y') }}
+                                            @endif
                                         </td>
                                         <td class="d-sm-table-cell fw-semibold text-muted">
                                             @if ($data->status === '0')

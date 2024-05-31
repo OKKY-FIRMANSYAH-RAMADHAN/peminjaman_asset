@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PenggunaSeeder extends Seeder
 {
@@ -12,6 +13,18 @@ class PenggunaSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        DB::table('pengguna')->insert(
+            [
+                [
+                    'id_pengguna'   => 'e2de628c-13aa-4d22-a3b4-65868134482b',
+                    'username'      => 'admin',
+                    'nama'          => 'Admin',
+                    'email'         => 'admin@pu.go',
+                    'password'      => '$2y$10$gasqgqkQJlF21d4HQl3qieHLrdabKR3rBMHLzU5J8S9fXVD7g.Dg2',
+                    'created_at'    => date('Y-m-d H:i:s'),
+                    'updated_at'    => date('Y-m-d H:i:s'),
+                ]
+            ]
+        );
     }
 }

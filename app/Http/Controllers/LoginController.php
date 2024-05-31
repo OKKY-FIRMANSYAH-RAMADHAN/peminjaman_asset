@@ -34,7 +34,7 @@ class LoginController extends Controller
 
         return back()->withErrors([
             'name' => 'Data Login Salah',
-        ])->onlyInput('name');
+        ])->onlyInput('name')->with('error', 'Data login salah');;
     }
 
     public function logout() {

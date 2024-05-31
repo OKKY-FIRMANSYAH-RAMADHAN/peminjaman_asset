@@ -51,7 +51,7 @@ class PeminjamanController extends Controller
         $id = $peminjaman->id_peminjaman;
 
         // Store ke tabel Detail Peminjaman Dan Lokasi
-        foreach ($request->nup as $key => $item_id) {
+        foreach ($request->id_barang as $key => $item_id) {
             $detailpeminjaman = new DetailPeminjaman();
             $detailpeminjaman->id_peminjaman    = $id;
             $detailpeminjaman->id_barang        = $request->nup[$key];
@@ -61,7 +61,7 @@ class PeminjamanController extends Controller
             $detailpeminjaman->save();
 
             $lokasi = new Lokasi();
-            $lokasi->id_barang      = $request->nup[$key];
+            $lokasi->id_barang      = $request->id_barang[$key];
             $lokasi->id_peminjaman  = $id;
             $lokasi->lokasi         = $request->lokasi_akhir[$key];
             $lokasi->save();
@@ -75,12 +75,12 @@ class PeminjamanController extends Controller
     {
         $data = [
             'title'     => 'Tambah Peminjaman',
-            'nama_barang'    => Barang::select('nama_barang')->distinct()->get()
+            'barang'    => Barang::with('kategori')->get(),
         ];
 
-        // echo json_encode($data['nama_barang']);
+        echo json_encode($data['barang']);
 
-        return view('admin.peminjaman.tambah',$data);
+        //return view('admin.peminjaman.tambah',$data);
     }
 
     public function status($id)

@@ -125,7 +125,7 @@
                             </th>
                             <th style="border: 1px solid black;">Tanggal Kembali : <br> <span
                                     style="font-weight: normal;">
-                                    @if (Carbon::parse($peminjaman[0]->tanggal_kembali)->locale('id')->translatedFormat('d F Y') === Carbon::parse($peminjaman[0]->updated_at)->locale('id')->translatedFormat('d F Y'))
+                                    @if ($peminjaman[0]->status == '0')
                                         {{ Carbon::parse($peminjaman[0]->tanggal_kembali)->locale('id')->translatedFormat('d F Y') }}
                                     @else
                                         {{ Carbon::parse($peminjaman[0]->updated_at)->locale('id')->translatedFormat('d F Y') }}

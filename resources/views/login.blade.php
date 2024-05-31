@@ -80,6 +80,11 @@
 
                                 <div class="row g-0 justify-content-center">
                                     <div class="col-sm-8 col-xl-4">
+                                        @if(session('error'))
+                                        <div class="alert alert-danger text-center" role="alert">
+                                            {{ session('error') }}
+                                        </div>
+                                        @endif
                                         <form class="js-validation-signin" action="{{route('auth.login')}}"
                                             method="POST">
                                             @csrf
