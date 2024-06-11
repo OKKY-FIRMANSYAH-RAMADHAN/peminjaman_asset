@@ -17,7 +17,7 @@ class Barang extends Model
 
     protected $fillable = [
         'id_kategori', 'kode_satker', 'nama_satker', 
-        'kode_barang', 'nama_barang', 'nup', 'kondisi', 'merek', 'tipe', 'tanggal_perolehan', 'tanggal_awal_pakai',
+        'kode_barang', 'nama_barang', 'nup', 'kondisi', 'merek', 'tipe', 'no_bpkb', 'no_polisi', 'tanggal_perolehan', 'tanggal_awal_pakai',
         'nilai_perolehan_pertama', 'nilai_mutasi', 'nilai_perolehan', 'nilai_penyusutan', 'nilai_buku', 'kuantitas', 'jumlah_foto', 'status_penggunaan', 'no_psp',
         'tanggal_psp', 'no_ticket_usul_psp', 'intra_ekstra', 'status_bpybds', 'status_henti_guna', 'status_kemitraan', 'status_barang_hilang', 'status_barang_dktp', 'status_usul_rusak_berat', 'status_usul_hapus', 'sisa_umur', 'status_sakti', 'kode_register_sakti'
     ];

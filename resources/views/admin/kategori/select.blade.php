@@ -82,7 +82,7 @@
                                         <div class="mb-4">
                                             <label class="form-label" for="example-file-input">Nama Kategori</label>
                                             <input class="form-control" type="text" name="nama_kategori"
-                                                id="nama_kategori" placeholder="Nama Kategori">
+                                                id="nama_kategori" placeholder="Nama Kategori" required>
                                         </div>
                                     </div>
                                 </div>
@@ -123,9 +123,9 @@
                                         <div class="mb-4">
                                             <label class="form-label" for="example-file-input">Nama Kategori</label>
                                             <input class="form-control" type="text" name="nama_kategori"
-                                                id="nama_kategori" placeholder="Nama Kategori">
+                                                id="nama_kategori" placeholder="Nama Kategori" required>
                                                 <input class="form-control" type="hidden" name="id_kategori"
-                                                id="id_kategori" placeholder="Id Kategori">
+                                                id="id_kategori" placeholder="Id Kategori" required>
                                         </div>
                                     </div>
                                 </div>
