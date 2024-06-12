@@ -54,7 +54,7 @@
                                     <td class="text-center">{{ $pinjam->peminjam }}</td>
                                     <td class="text-center"> {{ Carbon::parse($pinjam->tanggal_pinjam)->locale('id')->translatedFormat('d F Y') }}</td>
                                     <td class="text-center">{{ Carbon::parse($pinjam->updated_at)->locale('id')->translatedFormat('d F Y') }}</td>
-                                    <td class="text-center">{{ $pinjam->deskripsi }}</td>
+                                    <td class="text-center">{{ $pinjam->deskripsi ? $pinjam->deskripsi : '-' }}</td>
                                     <td class="text-center">{!! $pinjam->status === '0' ? '<span class="text-danger">Belum Dikembalikan</span>' : '<span class="text-success">Selesai</span>' !!}</td>
                                     <td class="text-center">
                                         <a href="{{ route('admin.peminjaman.detail', ['id' => $pinjam->id_peminjaman]) }}" class="btn btn-sm btn-warning"><i class="fas fa-info-circle"></i></a>

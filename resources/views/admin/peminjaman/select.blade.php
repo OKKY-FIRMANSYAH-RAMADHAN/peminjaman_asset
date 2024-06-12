@@ -53,7 +53,7 @@
                                     <td class="text-center">
                                         {{ $pinjam->tanggal_kembali === null? 'Belum Ditentukan': Carbon::parse($pinjam->tanggal_kembali)->locale('id')->translatedFormat('d F Y') }}
                                     </td>
-                                    <td class="text-center">{{ $pinjam->deskripsi }}</td>
+                                    <td class="text-center">{{ $pinjam->deskripsi ? $pinjam->deskripsi : '-' }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('admin.peminjaman.detail', ['id' => $pinjam->id_peminjaman]) }}"
                                             class="btn btn-sm btn-warning"><i class="fas fa-info-circle"></i></a>

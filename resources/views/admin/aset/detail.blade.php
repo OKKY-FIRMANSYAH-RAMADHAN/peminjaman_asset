@@ -246,7 +246,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>NO Polisi</b></td>
+                                                        <td><b>No Polisi</b></td>
                                                         <td>
                                                             {{ $barang->no_polisi }}
                                                         </td>
