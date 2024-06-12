@@ -24,7 +24,7 @@ class PeminjamanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
     public function headings(): array
     {
         return [
-            'Nama Barang', 'Peminjam', 'Deskripsi Peminjaman', 'Tanggal Pinjam', 'Tanggal Kembali', 'Lokasi Awal', 'Lokasi Akhir', 'Deskripsi Peminjaman Barang', 'Status'
+            'Nama Barang', 'NUP', 'Peminjam', 'Deskripsi Peminjaman', 'Tanggal Pinjam', 'Tanggal Kembali', 'Lokasi Awal', 'Lokasi Akhir', 'Deskripsi Peminjaman Barang', 'Status'
         ];
     }
 
@@ -36,6 +36,7 @@ class PeminjamanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
             $status = $peminjaman->status == 1 ? 'Selesai' : 'Belum Dikembalikan';
             $mappedData[] = [
                 $detail->barang->nama_barang,
+                $detail->barang->nup,
                 $peminjaman->peminjam,
                 $peminjaman->deskripsi,
                 $peminjaman->tanggal_pinjam,

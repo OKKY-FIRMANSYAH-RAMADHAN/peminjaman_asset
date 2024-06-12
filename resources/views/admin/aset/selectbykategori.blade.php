@@ -61,7 +61,7 @@
                                 <th class="">NUP</th>
                                 <th class="">Merek</th>
                                 <th>Lokasi Sekarang</th>
-                                <th>Aksi</th>
+                                <th style="width:10%;">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

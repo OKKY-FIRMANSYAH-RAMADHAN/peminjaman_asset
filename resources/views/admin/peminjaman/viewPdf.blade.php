@@ -155,7 +155,7 @@
             <table style="border-collapse: collapse; width: 100%;">
                 <thead style="text-align: center;">
                     <tr>
-                        <td><br><br>Pengelola Asrama</td>
+                        <td><br><br>Pengelola BMN</td>
                         <td></td>
                         <td>Surabaya,
                             {{ Carbon::parse(date('Y-m-d'))->locale('id')->translatedFormat('d F Y') }}<br><br>Pengguna
@@ -164,7 +164,7 @@
                 </thead>
                 <tbody style="text-align: center; text-indent: 5px;">
                     <tr>
-                        <td style="height:175px; vertical-align:bottom">Ispamuji <br>NIP. 197004242007011003</td>
+                        <td style="height:150px; vertical-align:bottom">Ispamuji <br>NIP. 197004242007011003</td>
                         <td style="height:50px; width: 160px;"></td>
                         <td style="height:50px; vertical-align:bottom">{{ $peminjaman[0]->peminjam }} <br>NIP. <span
                                 style="color:white">197004242007011</span> </td>

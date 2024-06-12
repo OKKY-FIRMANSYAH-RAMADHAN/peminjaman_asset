@@ -57,6 +57,8 @@ class AsetExport implements FromQuery, WithHeadings, WithMapping, WithStrictNull
             'kondisi' => 'Kondisi',
             'merek' => 'Merek',
             'tipe' => 'Tipe',
+            'no_bpkb' => 'NO BPKB',
+            'no_polisi' => 'NO Polisi',
             'tanggal_perolehan' => 'Tgl Perolehan',
             'tanggal_awal_pakai' => 'Tgl Awal Pakai',
             'nilai_perolehan_pertama' => 'Nilai Perolehan Pertama',

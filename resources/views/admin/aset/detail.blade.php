@@ -84,12 +84,14 @@
                                                             {{ $barang->merek }}
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td><b>Tipe</b></td>
-                                                        <td>
-                                                            {{ $barang->tipe }}
-                                                        </td>
-                                                    </tr>
+                                                    @if ($barang->no_polisi == null)
+                                                        <tr>
+                                                            <td><b>Tipe</b></td>
+                                                            <td>
+                                                                {{ $barang->tipe }}
+                                                            </td>
+                                                        </tr>
+                                                    @endif
                                                     <tr>
                                                         <td><b>Tanggal Perolehan</b></td>
                                                         <td>
@@ -97,7 +99,8 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Tanggal Awal Pakai</b></td>
+                                                        <td><b>{{ $barang->no_polisi == null ? 'Tanggal Awal Pakai' : 'Tanggal Rekam Pertama' }}</b>
+                                                        </td>
                                                         <td>
                                                             {{ Carbon::parse($barang->tanggal_awal_pakai)->locale('id')->translatedFormat('d F Y') }}
                                                         </td>
@@ -162,78 +165,93 @@
                                                             {{ Carbon::parse($barang->tanggal_psp)->locale('id')->translatedFormat('d F Y') }}
                                                         </td>
                                                     </tr>
+                                                    @if ($barang->no_polisi == null)
+                                                        <tr>
+                                                            <td><b>No Tiket Usul PSP</b></td>
+                                                            <td>
+                                                                {{ $barang->no_tiket_usul_psp != null ? $barang->no_tiket_usul_psp : '-' }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Intra/Ekstra</b></td>
+                                                            <td>
+                                                                {{ $barang->intra_ekstra }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Status BPYBDS</b></td>
+                                                            <td>
+                                                                {{ $barang->status_bpybds }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Status Henti Guna</b></td>
+                                                            <td>
+                                                                {{ $barang->status_henti_guna }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Status Kemitraan</b></td>
+                                                            <td>
+                                                                {{ $barang->status_kemitraan }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Status Barang Hilang</b></td>
+                                                            <td>
+                                                                {{ $barang->status_barang_hilang }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Status Barang DKTP</b></td>
+                                                            <td>
+                                                                {{ $barang->status_barang_dktp }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Status Usul Rusak Berat</b></td>
+                                                            <td>
+                                                                {{ $barang->status_usul_rusak_berat }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Status Usul Hapus</b></td>
+                                                            <td>
+                                                                {{ $barang->status_usul_hapus }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Sisa Umur (Semester)</b></td>
+                                                            <td>
+                                                                {{ $barang->sisa_umur }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Status SAKTI</b></td>
+                                                            <td>
+                                                                {{ $barang->status_sakti }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Kode Register SAKTI</b></td>
+                                                            <td>
+                                                                {{ $barang->kode_register_sakti }}
+                                                            </td>
+                                                        </tr>
+                                                    @else
                                                     <tr>
-                                                        <td><b>No Tiket Usul PSP</b></td>
+                                                        <td><b>NO BPKB</b></td>
                                                         <td>
-                                                            {{ $barang->no_tiket_usul_psp != null ? $barang->no_tiket_usul_psp : '-' }}
+                                                            {{ $barang->no_bpkb }}
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Intra/Ekstra</b></td>
+                                                        <td><b>NO Polisi</b></td>
                                                         <td>
-                                                            {{ $barang->intra_ekstra }}
+                                                            {{ $barang->no_polisi }}
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td><b>Status BPYBDS</b></td>
-                                                        <td>
-                                                            {{ $barang->status_bpybds }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Status Henti Guna</b></td>
-                                                        <td>
-                                                            {{ $barang->status_henti_guna }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Status Kemitraan</b></td>
-                                                        <td>
-                                                            {{ $barang->status_kemitraan }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Status Barang Hilang</b></td>
-                                                        <td>
-                                                            {{ $barang->status_barang_hilang }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Status Barang DKTP</b></td>
-                                                        <td>
-                                                            {{ $barang->status_barang_dktp }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Status Usul Rusak Berat</b></td>
-                                                        <td>
-                                                            {{ $barang->status_usul_rusak_berat }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Status Usul Hapus</b></td>
-                                                        <td>
-                                                            {{ $barang->status_usul_hapus }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Sisa Umur (Semester)</b></td>
-                                                        <td>
-                                                            {{ $barang->sisa_umur }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Status SAKTI</b></td>
-                                                        <td>
-                                                            {{ $barang->status_sakti }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Kode Register SAKTI</b></td>
-                                                        <td>
-                                                            {{ $barang->kode_register_sakti }}
-                                                        </td>
-                                                    </tr>
+                                                    @endif
                                                     <tr>
                                                         <td><b>Lokasi Sekarang</b></td>
                                                         <td>
@@ -253,36 +271,36 @@
                                             <div class="block-content block-content-full">
                                                 <div class="table-responsive">
                                                     <table
-                                                    class="table table-bordered table-striped table-vcenter js-dataTable-simple">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="text-center">Tanggal</th>
-                                                            <th class="text-center">Deskripsi</th>
-                                                            <th class="text-center">Lokasi Tujuan</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach ($lokasi as $lks)
+                                                        class="table table-bordered table-striped table-vcenter js-dataTable-simple">
+                                                        <thead>
                                                             <tr>
-                                                                <td class="text-center">
-                                                                    {{ Carbon::parse($lks->created_at)->locale('id')->translatedFormat('d F Y') }}
-                                                                </td>
-                                                                <td class="text-center">
-                                                                    @if ($lks->id_peminjaman == null)
-                                                                        Barang Dipindah Oleh Admin
-                                                                    @elseif ($lks->id_peminjaman != null && $lks->status == '0')
-                                                                        Barang Dipinjam Oleh
-                                                                        {{ $lks->peminjaman->peminjam }}
-                                                                    @elseif ($lks->id_peminjaman != null && $lks->status == '1')
-                                                                        Barang Dikembalikan Oleh
-                                                                        {{ $lks->peminjaman->peminjam }}
-                                                                    @endif
-                                                                </td>
-                                                                <td class="text-center">{{ $lks->lokasi }}</td>
+                                                                <th class="text-center">Tanggal</th>
+                                                                <th class="text-center">Deskripsi</th>
+                                                                <th class="text-center">Lokasi Tujuan</th>
                                                             </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($lokasi as $lks)
+                                                                <tr>
+                                                                    <td class="text-center">
+                                                                        {{ Carbon::parse($lks->created_at)->locale('id')->translatedFormat('d F Y') }}
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        @if ($lks->id_peminjaman == null)
+                                                                            Barang Dipindah Oleh Admin
+                                                                        @elseif ($lks->id_peminjaman != null && $lks->status == '0')
+                                                                            Barang Dipinjam Oleh
+                                                                            {{ $lks->peminjaman->peminjam }}
+                                                                        @elseif ($lks->id_peminjaman != null && $lks->status == '1')
+                                                                            Barang Dikembalikan Oleh
+                                                                            {{ $lks->peminjaman->peminjam }}
+                                                                        @endif
+                                                                    </td>
+                                                                    <td class="text-center">{{ $lks->lokasi }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
                                         </div>

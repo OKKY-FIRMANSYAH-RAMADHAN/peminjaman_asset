@@ -115,7 +115,8 @@ class PeminjamanController extends Controller
     }
 
     public function export(){
-        return Excel::download(new PeminjamanExport(), 'peminjaman.xlsx');
+        $name = 'Export Peminjaman '. Carbon::now()->format('d-m-Y');
+        return Excel::download(new PeminjamanExport(), $name.'.xlsx');
     }
 
     public function show($id) {
@@ -132,13 +133,14 @@ class PeminjamanController extends Controller
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
 
-
         $data = [
             'logo' => 'data:image/'. $type . ';base64,'. base64_encode($data),
             'peminjaman' => Peminjaman::with(['detailPeminjaman.barang'])->where('id_peminjaman', $id)->get()
         ];
 
         $pdf = Pdf::loadView('admin.peminjaman.viewPdf',$data);
+        //$pdf = Pdf::loadView('admin.peminjaman.viewPdfKendaraan',$data);
+        //$pdf = Pdf::loadView('admin.peminjaman.viewPdfPeminjamanPC',$data);
         return $pdf->stream();
     }
 

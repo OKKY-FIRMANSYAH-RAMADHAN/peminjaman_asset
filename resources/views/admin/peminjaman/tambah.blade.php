@@ -11,14 +11,12 @@
 
         .table-responsive table th {
             width: auto;
-            /* Allows table header to resize based on content */
         }
 
         .table-responsive table td input,
         .table-responsive table td select,
         .table-responsive table td textarea {
             width: 100%;
-            /* Make input fields full width */
         }
     </style>
 @endsection
@@ -35,7 +33,7 @@
                     </h1>
                 </div>
                 <div class="mt-3 mt-md-0 ms-md-3 space-x-1">
-                    <!-- Additional buttons or content can go here -->
+
                 </div>
             </div>
         </div>
@@ -46,6 +44,11 @@
                 <!-- Floating Labels -->
                 <div class="block block-rounded">
                     <div class="block-content block-content-full">
+                        <div class="mt-2 mb-4">
+                            <a href="" class="btn btn-dark rounded-pill">BMN</a>
+                            <a href="" class="btn btn-outline-dark rounded-pill">Kendaraan</a>
+                            <a href="" class="btn btn-outline-dark rounded-pill">SIP</a>
+                        </div>
                         <div class="col-12">
                             <div class="form-floating mb-4">
                                 <input type="text" class="form-control" id="peminjam" name="peminjam"
@@ -170,7 +173,8 @@
 
                 selectElement.on('change', function() {
                     const name = this.value;
-                    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                    const csrfToken = document.querySelector('meta[name="csrf-token"]')
+                        .getAttribute('content');
                     const xhr = new XMLHttpRequest();
                     xhr.open('POST', '/administrator/aset/get-nup', true);
                     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
@@ -180,7 +184,7 @@
                             const data = JSON.parse(xhr.responseText);
                             const nupSelect = newRow.querySelector('.select-nup');
                             nupSelect.innerHTML =
-                                '<option value="" selected disabled>NUP</option>'; 
+                                '<option value="" selected disabled>NUP</option>';
 
                             data.forEach(item => {
                                 const option = document.createElement('option');
@@ -190,7 +194,7 @@
                             });
 
                             $(nupSelect).select2();
-                        } 
+                        }
                     };
                     xhr.send(JSON.stringify({
                         name: name
@@ -215,7 +219,7 @@
                                 lokasiAwalInput.placeholder = "Tentukan Lokasi";
                                 lokasiAwalInput.readOnly = false;
                             }
-                        } 
+                        }
                     };
                     xhr.send();
                 });
