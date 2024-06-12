@@ -103,7 +103,7 @@
                                 <td style="border: 1px solid black;">
                                     {{ $detail->barang->merek . ' / ' . $detail->barang->tipe }} </td>
                                 <td style="border: 1px solid black;">1</td>
-                                <td style="border: 1px solid black;">{{ $detail->deskripsi }}</td>
+                                <td style="border: 1px solid black;">{{ $detail->deskripsi == null ? '-' :  $detail->deskripsi}}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -164,7 +164,7 @@
                 </thead>
                 <tbody style="text-align: center; text-indent: 5px;">
                     <tr>
-                        <td style="height:150px; vertical-align:bottom">Ispamuji <br>NIP. 197004242007011003</td>
+                        <td style="height:150px; vertical-align:bottom">{{$petugas[0]->nama}} <br>NIP. {{$petugas[0]->nip}}</td>
                         <td style="height:50px; width: 160px;"></td>
                         <td style="height:50px; vertical-align:bottom">{{ $peminjaman[0]->peminjam }} <br>NIP. <span
                                 style="color:white">197004242007011</span> </td>

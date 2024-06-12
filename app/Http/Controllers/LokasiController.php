@@ -12,6 +12,7 @@ class LokasiController extends Controller
         $lokasi = new Lokasi();
         $lokasi->id_barang = $request->id_barang;
         $lokasi->lokasi = $request->lokasi;
+        $lokasi->id_pengguna = session()->get('id');
         $save = $lokasi->save();
         
         if ($save) {

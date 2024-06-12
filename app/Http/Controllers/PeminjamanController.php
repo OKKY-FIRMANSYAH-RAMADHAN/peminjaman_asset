@@ -7,6 +7,7 @@ use App\Models\DetailPeminjaman;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Lokasi;
+use App\Models\Pengguna;
 use App\Exports\PeminjamanExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -46,6 +47,8 @@ class PeminjamanController extends Controller
         $peminjaman->tanggal_pinjam = $tanggal_pinjam;
         $peminjaman->tanggal_kembali = $tanggal_kembali;
         $peminjaman->deskripsi = $request->deskripsi;
+        $peminjaman->tipe = $request->tipe;
+        $peminjaman->id_petugas = session()->get('id');
         $peminjaman->save();
         
         $id = $peminjaman->id_peminjaman;
@@ -74,13 +77,11 @@ class PeminjamanController extends Controller
     public function create()
     {
         $data = [
-            'title'     => 'Tambah Peminjaman',
+            'title'     => 'Tambah Peminjaman Aset BMN',
             'nama_barang'    => Barang::select('nama_barang')->distinct()->get()
         ];
 
-        // echo json_encode($data['nama_barang']);
-
-        return view('admin.peminjaman.tambah',$data);
+        return view('admin.peminjaman.tambah-bmn',$data);
     }
 
     public function status($id)
@@ -135,8 +136,9 @@ class PeminjamanController extends Controller
 
         $data = [
             'logo' => 'data:image/'. $type . ';base64,'. base64_encode($data),
-            'peminjaman' => Peminjaman::with(['detailPeminjaman.barang'])->where('id_peminjaman', $id)->get()
+            'peminjaman' => Peminjaman::with(['detailPeminjaman.barang'])->where('id_peminjaman', $id)->get(),
         ];
+        $data['petugas'] = Pengguna::where('id_pengguna', $data['peminjaman'][0]->id_petugas)->get();
 
         $pdf = Pdf::loadView('admin.peminjaman.viewPdf',$data);
         //$pdf = Pdf::loadView('admin.peminjaman.viewPdfKendaraan',$data);

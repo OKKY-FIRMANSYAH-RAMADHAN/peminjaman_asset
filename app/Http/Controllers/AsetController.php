@@ -109,6 +109,7 @@ class AsetController extends Controller
             'title' => 'List Data Aset ',
             'barang' => Barang::with('kategori')->withLatestLokasi()->find($id),
             'lokasi' => Lokasi::where('id_barang', '=', $id)->orderBy('created_at', 'desc')->with('peminjaman')->get(),
+            'pemindah' => Lokasi::with('pengguna')->get()
         ];
 
         //echo json_encode($data['lokasi']);

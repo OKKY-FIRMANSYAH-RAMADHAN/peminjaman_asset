@@ -287,7 +287,7 @@
                                                                     </td>
                                                                     <td class="text-center">
                                                                         @if ($lks->id_peminjaman == null)
-                                                                            Barang Dipindah Oleh Admin
+                                                                            Barang Dipindah Oleh {{$pemindah[0]->pengguna->nama}}
                                                                         @elseif ($lks->id_peminjaman != null && $lks->status == '0')
                                                                             Barang Dipinjam Oleh
                                                                             {{ $lks->peminjaman->peminjam }}

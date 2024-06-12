@@ -12,10 +12,15 @@ class Lokasi extends Model
     use HasFactory, HasUuids;
     protected $table = 'lokasi';
     protected $primaryKey = 'id_lokasi';
-    protected $fillable = ['id_barang, id_peminjaman, lokasi'];
+    protected $fillable = ['id_barang, id_peminjaman, lokasi, id_pengguna'];
 
     public function peminjaman()
     {
         return $this->belongsTo(Peminjaman::class, 'id_peminjaman', 'id_peminjaman');
+    }
+
+    public function pengguna()
+    {
+        return $this->belongsTo(Pengguna::class, 'id_pengguna', 'id_pengguna');
     }
 }

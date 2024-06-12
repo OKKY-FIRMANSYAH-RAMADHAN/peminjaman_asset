@@ -25,7 +25,18 @@ class PenggunaSeeder extends Seeder
                     'role'          => 'Admin',
                     'created_at'    => date('Y-m-d H:i:s'),
                     'updated_at'    => date('Y-m-d H:i:s'),
-                ]
+                ],
+                [
+                    'id_pengguna'   => 'e2de628c-13aa-4d22-a3b4-6586813448bd',
+                    'username'      => 'ispamuji',
+                    'nama'          => 'Ispamuji',
+                    'nip'           => '197004242007011003',
+                    'email'         => 'ispamuji@pu.go',
+                    'password'      => '$2y$10$gasqgqkQJlF21d4HQl3qieHLrdabKR3rBMHLzU5J8S9fXVD7g.Dg2',
+                    'role'          => 'Petugas',
+                    'created_at'    => date('Y-m-d H:i:s'),
+                    'updated_at'    => date('Y-m-d H:i:s'),
+                ],
             ]
         );
     }

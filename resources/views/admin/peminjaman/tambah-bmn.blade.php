@@ -47,7 +47,7 @@
                         <div class="mt-2 mb-4">
                             <a href="" class="btn btn-dark rounded-pill">BMN</a>
                             <a href="" class="btn btn-outline-dark rounded-pill">Kendaraan</a>
-                            <a href="" class="btn btn-outline-dark rounded-pill">SIP</a>
+                            <a href="" class="btn btn-outline-dark rounded-pill">Laptop</a>
                         </div>
                         <div class="col-12">
                             <div class="form-floating mb-4">
@@ -81,6 +81,7 @@
                                     required></textarea>
                                 <label for="deskripsi">Keperluan</label>
                             </div>
+                            <input type="hidden" name="tipe" value="BMN">
                         </div>
                     </div>
                 </div>
