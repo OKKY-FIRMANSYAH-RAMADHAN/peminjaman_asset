@@ -74,6 +74,47 @@ class PeminjamanController extends Controller
         return redirect()->route('admin.peminjaman');
     }
 
+    public function storeKendaraan(Request $request)
+    {
+        // Store ke tabel Peminjaman
+        $dateRange = $request->tanggal;
+        list($tanggal_pinjam, $tanggal_kembali) = explode(' to ', $dateRange);
+
+        $tanggal_pinjam = Carbon::createFromFormat('d/m/Y', $tanggal_pinjam)->format('Y-m-d');
+        $tanggal_kembali = Carbon::createFromFormat('d/m/Y', $tanggal_kembali)->format('Y-m-d');
+
+        $peminjaman = new Peminjaman();
+        $peminjaman->peminjam = $request->peminjam;
+        $peminjaman->instansi = $request->instansi;
+        $peminjaman->tanggal_pinjam = $tanggal_pinjam;
+        $peminjaman->tanggal_kembali = $tanggal_kembali;
+        $peminjaman->deskripsi = $request->deskripsi;
+        $peminjaman->tipe = $request->tipe;
+        $peminjaman->id_petugas = session()->get('id');
+        $peminjaman->save();
+        
+        $id = $peminjaman->id_peminjaman;
+
+        // Store ke tabel Detail Peminjaman Dan Lokasi
+        foreach ($request->nup as $key => $item_id) {
+            $detailpeminjaman = new DetailPeminjaman();
+            $detailpeminjaman->id_peminjaman    = $id;
+            $detailpeminjaman->id_barang        = $request->nup[$key];
+            $detailpeminjaman->lokasi_awal      = $request->lokasi_awal[$key];
+            $detailpeminjaman->lokasi_akhir     = $request->lokasi_akhir[$key];
+            $detailpeminjaman->save();
+
+            $lokasi = new Lokasi();
+            $lokasi->id_barang      = $request->nup[$key];
+            $lokasi->id_peminjaman  = $id;
+            $lokasi->lokasi         = $request->lokasi_akhir[$key];
+            $lokasi->save();
+        }
+
+        session()->flash('success', 'Berhasil Menambah Data Peminjaman');
+        return redirect()->route('admin.peminjaman');
+    }
+
     public function create()
     {
         $data = [
@@ -82,6 +123,16 @@ class PeminjamanController extends Controller
         ];
 
         return view('admin.peminjaman.tambah-bmn',$data);
+    }
+
+    public function createKendaraan()
+    {
+        $data = [
+            'title'     => 'Tambah Peminjaman Aset Kendaraan',
+            'nama_barang'    => Barang::select('merek')->distinct()->get()
+        ];
+
+        return view('admin.peminjaman.tambah-kendaraan',$data);
     }
 
     public function status($id)
@@ -140,8 +191,8 @@ class PeminjamanController extends Controller
         ];
         $data['petugas'] = Pengguna::where('id_pengguna', $data['peminjaman'][0]->id_petugas)->get();
 
-        $pdf = Pdf::loadView('admin.peminjaman.viewPdf',$data);
-        //$pdf = Pdf::loadView('admin.peminjaman.viewPdfKendaraan',$data);
+        //$pdf = Pdf::loadView('admin.peminjaman.viewPdf',$data);
+        $pdf = Pdf::loadView('admin.peminjaman.viewPdfKendaraan',$data);
         //$pdf = Pdf::loadView('admin.peminjaman.viewPdfPeminjamanPC',$data);
         return $pdf->stream();
     }

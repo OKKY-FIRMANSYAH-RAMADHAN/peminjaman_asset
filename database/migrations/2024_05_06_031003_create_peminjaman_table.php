@@ -15,9 +15,10 @@ return new class extends Migration
             $table->uuid('id_peminjaman')->primary();
             $table->foreignUuid('id_petugas')->references('id_pengguna')->on('pengguna')->onDelete('cascade');
             $table->string('peminjam', 255);
-            $table->string('instansi', 255);
-            $table->string('alamat', 255);
-            $table->string('no_telp', 255);
+            $table->string('instansi', 255)->nullable();
+            $table->string('alamat', 255)->nullable();
+            $table->string('no_telp', 255)->nullable();
+            $table->string('nip', 255)->nullable();
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali');
             $table->text('deskripsi')->nullable();

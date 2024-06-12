@@ -31,6 +31,7 @@ Route::middleware([CekLogin::class])->group(function () {
     Route::get('/administrator/aset/delete/{id}', [AsetController::class, 'destroy'])->name('admin.aset.delete');
     Route::get('/administrator/aset/kategori/{slug}', [AsetController::class, 'showByKategori'])->name('admin.data.aset.kategori');
     Route::post('/administrator/aset/get-nup', [AsetController::class, 'getNupByName'])->name('admin.aset.get.nup');
+    Route::post('/administrator/aset/get-nopolisi', [AsetController::class, 'getNoPolisiByMerek'])->name('admin.aset.get.nopolisi');
     Route::get('/administrator/aset/import', [AsetController::class, 'viewImport'])->name('admin.import.aset');
     Route::post('/administrator/aset/import', [AsetController::class, 'import']);
     Route::get('/administrator/aset/export/', [AsetController::class, 'export'])->name('admin.aset.export');
@@ -44,6 +45,8 @@ Route::middleware([CekLogin::class])->group(function () {
     Route::get('/administrator/peminjaman', [PeminjamanController::class, 'index'])->name('admin.peminjaman');
     Route::get('/administrator/peminjaman/tambah', [PeminjamanController::class, 'create'])->name('admin.peminjaman.tambah');
     Route::post('/administrator/peminjaman/tambah', [PeminjamanController::class, 'store'])->name('admin.peminjaman.store');
+    Route::get('/administrator/peminjaman/tambah/kendaraan', [PeminjamanController::class, 'createKendaraan'])->name('admin.peminjaman.tambah-kendaraan');
+    Route::post('/administrator/peminjaman/tambah/kendaraan', [PeminjamanController::class, 'storeKendaraan'])->name('admin.peminjaman.store-kendaraan');
     Route::get('/administrator/peminjaman/status/{id}', [PeminjamanController::class, 'status'])->name('admin.update.status');
     Route::get('/administrator/peminjaman/delete/{id}', [PeminjamanController::class, 'destroy'])->name('admin.peminjaman.delete');
     Route::get('/administrator/peminjaman/detail/{id}', [PeminjamanController::class, 'show'])->name('admin.peminjaman.detail');

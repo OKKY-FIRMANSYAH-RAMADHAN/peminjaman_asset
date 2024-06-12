@@ -38,15 +38,15 @@
             </div>
         </div>
 
-        <form action="{{ route('admin.peminjaman.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('admin.peminjaman.store-kendaraan') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="content">
                 <!-- Floating Labels -->
                 <div class="block block-rounded">
                     <div class="block-content block-content-full">
                         <div class="mt-2 mb-4">
-                            <a href="{{ route('admin.peminjaman.tambah') }}" class="btn btn-dark rounded-pill">BMN</a>
-                            <a href="{{ route('admin.peminjaman.tambah-kendaraan') }}" class="btn btn-outline-dark rounded-pill">Kendaraan</a>
+                            <a href="{{ route('admin.peminjaman.tambah') }}" class="btn {{ Route::currentRouteName() === 'admin.peminjaman.tambah' ? 'btn-dark' : 'btn-outline-dark' }}  rounded-pill">BMN</a>
+                            <a href="{{ route('admin.peminjaman.tambah-kendaraan') }}" class="btn {{ Route::currentRouteName() === 'admin.peminjaman.tambah-kendaraan' ? 'btn-dark' : 'btn-outline-dark' }} rounded-pill">Kendaraan</a>
                             <a href="" class="btn btn-outline-dark rounded-pill">Laptop</a>
                         </div>
                         <div class="col-12">
@@ -58,17 +58,7 @@
                             <div class="form-floating mb-4">
                                 <input type="text" class="form-control" id="instansi" name="instansi"
                                     placeholder="Asal Instansi" required>
-                                <label for="instansi">Asal Instansi</label>
-                            </div>
-                            <div class="form-floating mb-4">
-                                <textarea class="form-control" id="alamat" name="alamat" style="height: 100px" placeholder="Masukkan Alamat"
-                                    required></textarea>
-                                <label for="alamat">Alamat</label>
-                            </div>
-                            <div class="form-floating mb-4">
-                                <input type="tel" class="form-control" id="no_telp" name="no_telp"
-                                    placeholder="No Telepon" required pattern="\d*">
-                                <label for="no_telp">Nomor Telepon</label>
+                                <label for="instansi">Jabatan</label>
                             </div>
                             <div class="form-floating mb-4">
                                 <input type="text" class="js-flatpickr form-control" id="tanggal" name="tanggal"
@@ -81,7 +71,7 @@
                                     required></textarea>
                                 <label for="deskripsi">Keperluan</label>
                             </div>
-                            <input type="hidden" name="tipe" value="BMN">
+                            <input type="hidden" name="tipe" value="Kendaraan">
                         </div>
                     </div>
                 </div>
@@ -89,7 +79,7 @@
 
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Rincian Barang</h3>
+                        <h3 class="block-title">Rincian Kendaraan</h3>
                         <button type="button" class="btn btn-success btn-sm btn-tambah"><i
                                 class="fas fa-plus"></i></button>
                     </div>
@@ -98,11 +88,10 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Barang </th>
-                                        <th>NUP </th>
+                                        <th>Jenis Kendaraan </th>
+                                        <th>No Polisi</th>
                                         <th>Lokasi Awal</th>
                                         <th>Lokasi Tujuan</th>
-                                        <th>Deskripsi</th>
                                         <th class="text-center"></th>
                                     </tr>
                                 </thead>
@@ -151,21 +140,20 @@
                 const newRow = document.createElement('tr');
                 newRow.innerHTML = `
                 <td>
-                    <select class="js-select2 form-select select-barang" name="id_barang[]" style="width:230px;" required>
-                        <option value="" selected disabled>Pilih Barang</option>
+                    <select class="js-select2 form-select select-barang" name="id_barang[]" style="width:250px;" required>
+                        <option value="" selected disabled>Pilih Kendaraan</option>
                         @foreach ($nama_barang as $nama_brg)
-                            <option value="{{ $nama_brg->nama_barang }}">{{ $nama_brg->nama_barang }}</option>
+                            <option value="{{ $nama_brg->merek }}">{{ $nama_brg->merek }}</option>
                         @endforeach
                     </select>
                 </td>
                 <td>
-                    <select class="js-select2 form-select select-nup" name="nup[]" style="width:100px;" required>
-                        <option value="" selected disabled>NUP</option>
+                    <select class="js-select2 form-select select-nopolisi" name="nup[]" style="width:200px;" required>
+                        <option value="" selected disabled>No Polisi</option>
                     </select>
                 </td>
                 <td><input type="text" class="form-control lokasi-awal" style="width:250px;" required name="lokasi_awal[]" placeholder="Lokasi Awal"></td>
                 <td><input type="text" class="form-control" style="width:250px;" required name="lokasi_akhir[]" placeholder="Lokasi Tujuan"></td>
-                <td><textarea class="form-control" name="deskripsi_barang[]" style="width:250px;" placeholder="Deskripsi" rows="1"></textarea></td>
                 <td><button type="button" class="btn btn-danger btn-sm delete-row"><i class="fas fa-times"></i></button></td>
                 `;
                 tableBody.appendChild(newRow);
@@ -173,36 +161,36 @@
                 selectElement.select2();
 
                 selectElement.on('change', function() {
-                    const name = this.value;
+                    const merek = this.value;
                     const csrfToken = document.querySelector('meta[name="csrf-token"]')
                         .getAttribute('content');
                     const xhr = new XMLHttpRequest();
-                    xhr.open('POST', '/administrator/aset/get-nup', true);
+                    xhr.open('POST', '/administrator/aset/get-nopolisi', true);
                     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
                     xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
                     xhr.onload = function() {
                         if (xhr.status === 200) {
                             const data = JSON.parse(xhr.responseText);
-                            const nupSelect = newRow.querySelector('.select-nup');
-                            nupSelect.innerHTML =
-                                '<option value="" selected disabled>NUP</option>';
+                            const nopolSelect = newRow.querySelector('.select-nopolisi');
+                            nopolSelect.innerHTML =
+                                '<option value="" selected disabled>No Polisi</option>';
 
                             data.forEach(item => {
                                 const option = document.createElement('option');
                                 option.value = item.id_barang;
-                                option.textContent = item.nup;
-                                nupSelect.appendChild(option);
+                                option.textContent = item.no_polisi;
+                                nopolSelect.appendChild(option);
                             });
 
-                            $(nupSelect).select2();
+                            $(nopolSelect).select2();
                         }
                     };
                     xhr.send(JSON.stringify({
-                        name: name
+                        merek: merek
                     }));
                 });
 
-                const selectNup = $(newRow).find('.select-nup');
+                const selectNup = $(newRow).find('.select-nopolisi');
                 selectNup.on('change', function() {
                     const selectedId = this.value;
                     const xhr = new XMLHttpRequest();

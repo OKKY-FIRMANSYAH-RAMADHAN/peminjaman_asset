@@ -118,6 +118,7 @@
                             <th style="border: 1px solid black;">No</th>
                             <th style="border: 1px solid black;">Jenis Kendaraan</th>
                             <th style="border: 1px solid black;">No. Polisi</th>
+                            <th style="border: 1px solid black;">Tujuan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -128,6 +129,8 @@
                                     {{ $detail->barang->merek }}</td>
                                 <td style="border: 1px solid black;">
                                     {{ $detail->barang->no_polisi }} </td>
+                                    <td style="border: 1px solid black;">
+                                        {{ $detail->lokasi_akhir }} </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -149,7 +152,7 @@
                     <tr>
                         <td style="height:135px; vertical-align:bottom"></td>
                         <td style="height:50px; width: 400px;"></td>
-                        <td style="height:50px; vertical-align:bottom"></td>
+                        <td style="height:50px; vertical-align:bottom">{{$petugas[0]->nama}} <br>NIP. {{$petugas[0]->nip}}</td>
                     </tr>
                 </tbody>
             </table>

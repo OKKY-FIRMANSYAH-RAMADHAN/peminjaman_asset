@@ -123,6 +123,12 @@ class AsetController extends Controller
         return response()->json($nup);
     }
 
+    function getNoPolisiByMerek(Request $request) {
+        $merek = $request->input('merek');
+        $no_polisi = Barang::select('no_polisi','id_barang')->where('merek', $merek)->get();
+        return response()->json($no_polisi);
+    }
+
     public function export()
     {
         $dateTime = Carbon::now('Asia/Jakarta')->format('d-m-Y'); 

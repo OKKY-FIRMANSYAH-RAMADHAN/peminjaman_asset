@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li
-                    class="nav-main-item {{ Route::currentRouteName() === 'admin.peminjaman.tambah' || Route::currentRouteName() === 'admin.peminjaman' ? 'open' : '' }}">
+                    class="nav-main-item {{ Route::currentRouteName() === 'admin.peminjaman.tambah' || Route::currentRouteName() === 'admin.peminjaman' || Route::currentRouteName() === 'admin.peminjaman.tambah-kendaraan' ? 'open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                         aria-expanded="true" href="#">
                         <i class="nav-main-link-icon fa fa-hand-holding"></i>
@@ -67,7 +67,7 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link {{ Route::currentRouteName() === 'admin.peminjaman.tambah' ? 'active' : '' }}"
+                            <a class="nav-main-link {{ Route::currentRouteName() === 'admin.peminjaman.tambah' || Route::currentRouteName() === 'admin.peminjaman.tambah-kendaraan' ? 'active' : '' }}"
                                 href="{{ route('admin.peminjaman.tambah') }}">
                                 <span class="nav-main-link-name">Tambah Peminjaman</span>
                             </a>
