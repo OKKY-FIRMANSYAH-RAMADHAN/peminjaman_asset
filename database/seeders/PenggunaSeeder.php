@@ -19,8 +19,10 @@ class PenggunaSeeder extends Seeder
                     'id_pengguna'   => 'e2de628c-13aa-4d22-a3b4-65868134482b',
                     'username'      => 'admin',
                     'nama'          => 'Admin',
+                    'nip'           => '198308242010121005',
                     'email'         => 'admin@pu.go',
                     'password'      => '$2y$10$gasqgqkQJlF21d4HQl3qieHLrdabKR3rBMHLzU5J8S9fXVD7g.Dg2',
+                    'role'          => 'Admin',
                     'created_at'    => date('Y-m-d H:i:s'),
                     'updated_at'    => date('Y-m-d H:i:s'),
                 ]

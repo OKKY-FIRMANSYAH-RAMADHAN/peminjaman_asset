@@ -42,11 +42,10 @@
                         <div class="p-4 p-xl-5 flex-grow-1 d-flex align-items-center">
                             <div class="w-100">
                                 <a class="link-fx fw-semibold fs-2 text-white" href="index.html">
-                                    OneUI
+                                    SIMPAN
                                 </a>
                                 <p class="text-white-75 me-xl-8 mt-2">
-                                    Welcome to your amazing app. Feel free to login and start managing your projects and
-                                    clients.
+                                    Selamat Datang Di Aplikasi SIMPAN (Sistem Peminjaman)
                                 </p>
                             </div>
                         </div>
@@ -81,7 +80,7 @@
                                 <div class="row g-0 justify-content-center">
                                     <div class="col-sm-8 col-xl-4">
                                         @if(session('error'))
-                                        <div class="alert alert-danger text-center" role="alert">
+                                        <div class="alert alert-danger" role="alert">
                                             {{ session('error') }}
                                         </div>
                                         @endif

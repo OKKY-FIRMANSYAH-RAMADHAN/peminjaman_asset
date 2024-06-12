@@ -27,6 +27,7 @@ class LoginController extends Controller
             Session::put('email', $pengguna->email);
             Session::put('username', $pengguna->username);
             Session::put('id', $pengguna->id_pengguna);
+            Session::put('role', $pengguna->role);
             Session::put('logged_in', TRUE);
 
             return redirect()->route('admin.dashboard');

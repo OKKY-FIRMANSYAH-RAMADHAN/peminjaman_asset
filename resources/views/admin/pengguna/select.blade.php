@@ -37,6 +37,7 @@
                             <tr>
                                 <th>Nama</th>
                                 <th>Username</th>
+                                <th>NIP</th>
                                 <th>Email</th>
                                 <th style="width: 100px;" class="no-print">Aksi</th>
                             </tr>
@@ -46,10 +47,11 @@
                                 <tr>
                                     <td>{{ $data->nama }}</td>
                                     <td>{{ $data->username }}</td>
+                                    <td>{{ $data->nip }}</td>
                                     <td>{{ $data->email }}</td>
                                     <td class="fw-semibold fs-sm">
-                                        <button type="button" class="btn btn-sm btn-warning editButton" data-id="{{ $data->id_pengguna }}" data-name="{{ $data->nama }}" data-username="{{ $data->username }}" data-email="{{ $data->email }}"><i class="fa fa-fw fa-pencil-alt"></i></button>
-                                        <a href="{{ route('admin.pengguna.delete', ['id' => $data->id_pengguna]) }}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?')"><i class="fa fa-fw fa-trash"></i></a>
+                                        <button type="button" class="btn btn-sm btn-warning editButton" data-id="{{ $data->id_pengguna }}" data-name="{{ $data->nama }}" data-username="{{ $data->username }}" data-email="{{ $data->email }}" data-nip="{{ $data->nip }}"><i class="fa fa-fw fa-pencil-alt"></i></button>
+                                        <a href="{{ route('admin.pengguna.delete', ['id' => $data->id_pengguna]) }}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini? Menghapus pengguna akan bedampak ke data yang berelasi')"><i class="fa fa-fw fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -90,6 +92,11 @@
                                             <label class="form-label" for="example-file-input">Username</label>
                                             <input class="form-control" type="text" name="username"
                                                 id="username" placeholder="Username" required>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-label" for="example-file-input">NIP</label>
+                                            <input class="form-control" type="number" name="nip"
+                                                id="nip" placeholder="NIP" required>
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label" for="example-file-input">Email</label>
@@ -146,6 +153,11 @@
                                             <label class="form-label" for="example-file-input">Username</label>
                                             <input class="form-control" type="text" name="username"
                                                 id="username" placeholder="Username" required>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-label" for="example-file-input">NIP</label>
+                                            <input class="form-control" type="number" name="nip"
+                                                id="nip" placeholder="NIP" required>
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label" for="example-file-input">Email</label>
@@ -208,16 +220,19 @@
                 var name = editButton.getAttribute("data-name");
                 var username = editButton.getAttribute("data-username");
                 var email = editButton.getAttribute("data-email");
+                var nip = editButton.getAttribute("data-nip");
     
                 var modal = document.getElementById("editModal");
                 var namaInput = modal.querySelector("#nama");
                 var usernameInput = modal.querySelector("#username");
                 var emailInput = modal.querySelector("#email");
+                var nipInput = modal.querySelector("#nip");
                 var idPenggunaInput = modal.querySelector("#id_pengguna");
     
                 namaInput.value = name; 
                 usernameInput.value = username;
                 emailInput.value = email;
+                nipInput.value = nip;
                 idPenggunaInput.value = id;
                 var editModal = new bootstrap.Modal(modal);
                 editModal.show();

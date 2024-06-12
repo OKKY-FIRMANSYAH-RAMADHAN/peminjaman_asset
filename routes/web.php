@@ -10,6 +10,7 @@ use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Middleware\CekLogin;
 use App\Http\Middleware\isLogin;
+use App\Http\Middleware\isAdmin;
 
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware(isLogin::class);
 Route::post('/', [LoginController::class, 'authlogin'])->name('auth.login')->middleware(isLogin::class);
@@ -53,8 +54,8 @@ Route::middleware([CekLogin::class])->group(function () {
     Route::get('/administrator/laporan/export', [PeminjamanController::class, 'export'])->name('admin.laporan.export');
 
     // Pengguna
-    Route::get('/administrator/pengguna', [PenggunaController::class, 'index'])->name('admin.data.pengguna');
-    Route::post('/administrator/pengguna', [PenggunaController::class, 'store']);
-    Route::post('/administrator/pengguna/update', [PenggunaController::class, 'update'])->name('admin.pengguna.update');
-    Route::get('/administrator/pengguna/delete/{id}', [PenggunaController::class, 'destroy'])->name('admin.pengguna.delete');
+    Route::get('/administrator/pengguna', [PenggunaController::class, 'index'])->name('admin.data.pengguna')->middleware(isAdmin::class);
+    Route::post('/administrator/pengguna', [PenggunaController::class, 'store'])->middleware(isAdmin::class);
+    Route::post('/administrator/pengguna/update', [PenggunaController::class, 'update'])->name('admin.pengguna.update')->middleware(isAdmin::class);
+    Route::get('/administrator/pengguna/delete/{id}', [PenggunaController::class, 'destroy'])->name('admin.pengguna.delete')->middleware(isAdmin::class);
 });

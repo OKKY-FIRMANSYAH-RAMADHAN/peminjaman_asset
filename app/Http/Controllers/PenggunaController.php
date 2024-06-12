@@ -30,6 +30,7 @@ class PenggunaController extends Controller
         $pengguna->nama = $request->nama;
         $pengguna->username = $request->username;
         $pengguna->email = $request->email;
+        $pengguna->nip = $request->nip;
         $pengguna->password = Hash::make($request->password);
         $save = $pengguna->save();
         
@@ -48,6 +49,7 @@ class PenggunaController extends Controller
         $pengguna->nama = $request->nama;
         $pengguna->username = $request->username;
         $pengguna->email = $request->email;
+        $pengguna->nip = $request->nip;
 
         if ($request->password) {
             $pengguna->password = Hash::make($request->password);

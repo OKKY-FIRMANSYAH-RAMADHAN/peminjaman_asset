@@ -6,7 +6,8 @@
             <span class="smini-visible">
                 <i class="text-white">S</i>
             </span>
-            <span class="smini-hide fs-5 tracking-wider"><img src="{{ asset('assets/media/logo.png') }}" alt="" width="50px" height="50px"> SIMPAN</span>
+            <span class="smini-hide fs-5 tracking-wider"><img src="{{ asset('assets/media/logo.png') }}" alt=""
+                    width="50px" height="50px"> SIMPAN</span>
         </a>
         <!-- END Logo -->
 
@@ -38,26 +39,27 @@
             <ul class="nav-main">
                 <li class="nav-main-item">
                     <a class="nav-main-link {{ Route::currentRouteName() === 'admin.dashboard' ? 'active' : '' }}"
-                        href="{{route('admin.dashboard')}}">
+                        href="{{ route('admin.dashboard') }}">
                         <i class="nav-main-link-icon si si-speedometer"></i>
                         <span class="nav-main-link-name">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link {{ Route::currentRouteName() === 'admin.data.kategori' ? 'active' : '' }}"
-                        href="{{route('admin.data.kategori')}}">
+                        href="{{ route('admin.data.kategori') }}">
                         <i class="nav-main-link-icon far fa-rectangle-list"></i>
                         <span class="nav-main-link-name">Kategori</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link {{ Route::currentRouteName() === 'admin.data.aset' || Route::currentRouteName() === 'admin.import.aset' || Route::currentRouteName() === 'admin.data.aset.kategori' || Route::currentRouteName() === 'admin.detail.aset' ? 'active' : '' }}"
-                        href="{{route('admin.data.aset')}}">
+                        href="{{ route('admin.data.aset') }}">
                         <i class="nav-main-link-icon si si-layers"></i>
                         <span class="nav-main-link-name">Aset</span>
                     </a>
                 </li>
-                <li class="nav-main-item {{ Route::currentRouteName() === 'admin.peminjaman.tambah' || Route::currentRouteName() === 'admin.peminjaman' ? 'open' : '' }}">
+                <li
+                    class="nav-main-item {{ Route::currentRouteName() === 'admin.peminjaman.tambah' || Route::currentRouteName() === 'admin.peminjaman' ? 'open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                         aria-expanded="true" href="#">
                         <i class="nav-main-link-icon fa fa-hand-holding"></i>
@@ -65,29 +67,35 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link {{ Route::currentRouteName() === 'admin.peminjaman.tambah' ? 'active' : '' }}" href="{{route('admin.peminjaman.tambah')}}">
+                            <a class="nav-main-link {{ Route::currentRouteName() === 'admin.peminjaman.tambah' ? 'active' : '' }}"
+                                href="{{ route('admin.peminjaman.tambah') }}">
                                 <span class="nav-main-link-name">Tambah Peminjaman</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                          <a class="nav-main-link {{ Route::currentRouteName() === 'admin.peminjaman' ? 'active' : '' }}" href="{{ route('admin.peminjaman') }}">
-                              <span class="nav-main-link-name">Sedang Berlangsung</span>
-                          </a>
-                      </li>
+                            <a class="nav-main-link {{ Route::currentRouteName() === 'admin.peminjaman' ? 'active' : '' }}"
+                                href="{{ route('admin.peminjaman') }}">
+                                <span class="nav-main-link-name">Sedang Berlangsung</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link {{ Route::currentRouteName() === 'admin.laporan' || Route::currentRouteName() === 'admin.peminjaman.detail' ? 'active' : '' }}" href="{{route('admin.laporan')}}">
+                    <a class="nav-main-link {{ Route::currentRouteName() === 'admin.laporan' || Route::currentRouteName() === 'admin.peminjaman.detail' ? 'active' : '' }}"
+                        href="{{ route('admin.laporan') }}">
                         <i class="nav-main-link-icon si si-notebook"></i>
                         <span class="nav-main-link-name">Laporan</span>
                     </a>
                 </li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link {{ Route::currentRouteName() === 'admin.data.pengguna'? 'active' : '' }}" href="{{route('admin.data.pengguna')}}">
-                        <i class="nav-main-link-icon si si-users"></i>
-                        <span class="nav-main-link-name">Pengguna</span>
-                    </a>
-                </li>
+                @if (session()->get('role') === 'Admin')
+                    <li class="nav-main-item">
+                        <a class="nav-main-link {{ Route::currentRouteName() === 'admin.data.pengguna' ? 'active' : '' }}"
+                            href="{{ route('admin.data.pengguna') }}">
+                            <i class="nav-main-link-icon si si-users"></i>
+                            <span class="nav-main-link-name">Pengguna</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
         <!-- END Side Navigation -->
