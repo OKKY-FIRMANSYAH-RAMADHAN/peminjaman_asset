@@ -66,22 +66,22 @@
                     <tr>
                         <td>NIP</td>
                         <td style="padding-left:50px;">:</td>
-                        <td>{{ $peminjaman[0]->instansi }}</td>
+                        <td>{{ $peminjaman[0]->nip }}</td>
                     </tr>
                     <tr>
                         <td>Pangkat/Golongan</td>
                         <td style="padding-left:50px;">:</td>
-                        <td style="word-wrap: break-word;vertical-align:top">{{ $peminjaman[0]->alamat }}</td>
+                        <td style="word-wrap: break-word;vertical-align:top">{{ $peminjaman[0]->instansi }}</td>
                     </tr>
                     <tr>
                         <td>Jabatan</td>
                         <td style="padding-left:50px;">:</td>
-                        <td>{{ $peminjaman[0]->no_telp }}</td>
+                        <td>{{ $peminjaman[0]->jabatan }}</td>
                     </tr>
                     <tr>
                         <td>Alamat Rumah</td>
                         <td style="padding-left:50px;">:</td>
-                        <td>{{ $peminjaman[0]->no_telp }}</td>
+                        <td>{{ $peminjaman[0]->alamat }}</td>
                     </tr>
                 </table>
                 <p style="margin-top: 10px; text-align:center; font-weight:bold;">DIIZINKAN</p>
@@ -94,27 +94,27 @@
                     <tr>
                         <td>Laptop/Notebook</td>
                         <td style="padding-left:50px;">:</td>
-                        <td>{{ $peminjaman[0]->peminjam }}</td>
+                        <td>{{ $peminjaman[0]->detailPeminjaman[0]->barang->nama_barang }}</td>
                     </tr>
                     <tr>
                         <td>Merk / Type</td>
                         <td style="padding-left:50px;">:</td>
-                        <td>{{ $peminjaman[0]->instansi }}</td>
+                        <td>{{ $peminjaman[0]->detailPeminjaman[0]->barang->merek }}</td>
                     </tr>
                     <tr>
                         <td>Warna</td>
                         <td style="padding-left:50px;">:</td>
-                        <td style="word-wrap: break-word;vertical-align:top">{{ $peminjaman[0]->alamat }}</td>
+                        <td style="word-wrap: break-word;vertical-align:top">{{ $peminjaman[0]->detailPeminjaman[0]->deskripsi }}</td>
                     </tr>
                     <tr>
                         <td>Kode Barang/NUP</td>
                         <td style="padding-left:50px;">:</td>
-                        <td>{{ $peminjaman[0]->no_telp }}</td>
+                        <td>{{ $peminjaman[0]->detailPeminjaman[0]->barang->kode_barang . '/' . $peminjaman[0]->detailPeminjaman[0]->barang->nup }}</td>
                     </tr>
                     <tr>
                         <td>Tahun</td>
                         <td style="padding-left:50px;">:</td>
-                        <td>{{ $peminjaman[0]->no_telp }}</td>
+                        <td>{{ Carbon::parse($peminjaman[0]->detailPeminjaman[0]->barang->tanggal_awal_pakai)->locale('id')->translatedFormat('Y') }}</td>
                     </tr>
                 </table>
                 <table style="margin-top: 10px;">

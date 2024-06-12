@@ -11,7 +11,7 @@ class Peminjaman extends Model
     use HasFactory,HasUuids;
     protected $table = 'peminjaman';
     protected $primaryKey = 'id_peminjaman';
-    protected $fillable = ['peminjam, tanggal_pinjam, tanggal_kembali, deskripsi, status'];
+    protected $fillable = ['id_petugas, peminjam, instansi, alamat, no_telp, nip, jabatan, tanggal_pinjam, tanggal_kembali, deskripsi, status, tipe',];
 
     public function detailPeminjaman()
     {

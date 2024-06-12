@@ -45,9 +45,9 @@
                 <div class="block block-rounded">
                     <div class="block-content block-content-full">
                         <div class="mt-2 mb-4">
-                            <a href="{{ route('admin.peminjaman.tambah') }}" class="btn btn-dark rounded-pill">BMN</a>
-                            <a href="{{ route('admin.peminjaman.tambah-kendaraan') }}" class="btn btn-outline-dark rounded-pill">Kendaraan</a>
-                            <a href="" class="btn btn-outline-dark rounded-pill">Laptop</a>
+                            <a href="{{ route('admin.peminjaman.tambah') }}" class="btn {{ Route::currentRouteName() === 'admin.peminjaman.tambah' ? 'btn-dark' : 'btn-outline-dark' }}  rounded-pill">BMN</a>
+                            <a href="{{ route('admin.peminjaman.tambah-kendaraan') }}" class="btn {{ Route::currentRouteName() === 'admin.peminjaman.tambah-kendaraan' ? 'btn-dark' : 'btn-outline-dark' }} rounded-pill">Kendaraan</a>
+                            <a href="{{ route('admin.peminjaman.tambah-laptop') }}" class="btn {{ Route::currentRouteName() === 'admin.peminjaman.tambah-laptop' ? 'btn-dark' : 'btn-outline-dark' }} rounded-pill">Laptop</a>
                         </div>
                         <div class="col-12">
                             <div class="form-floating mb-4">

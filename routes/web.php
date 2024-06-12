@@ -47,6 +47,8 @@ Route::middleware([CekLogin::class])->group(function () {
     Route::post('/administrator/peminjaman/tambah', [PeminjamanController::class, 'store'])->name('admin.peminjaman.store');
     Route::get('/administrator/peminjaman/tambah/kendaraan', [PeminjamanController::class, 'createKendaraan'])->name('admin.peminjaman.tambah-kendaraan');
     Route::post('/administrator/peminjaman/tambah/kendaraan', [PeminjamanController::class, 'storeKendaraan'])->name('admin.peminjaman.store-kendaraan');
+    Route::get('/administrator/peminjaman/tambah/laptop', [PeminjamanController::class, 'createLaptop'])->name('admin.peminjaman.tambah-laptop');
+    Route::post('/administrator/peminjaman/tambah/laptop', [PeminjamanController::class, 'storeLaptop'])->name('admin.peminjaman.store-laptop');
     Route::get('/administrator/peminjaman/status/{id}', [PeminjamanController::class, 'status'])->name('admin.update.status');
     Route::get('/administrator/peminjaman/delete/{id}', [PeminjamanController::class, 'destroy'])->name('admin.peminjaman.delete');
     Route::get('/administrator/peminjaman/detail/{id}', [PeminjamanController::class, 'show'])->name('admin.peminjaman.detail');

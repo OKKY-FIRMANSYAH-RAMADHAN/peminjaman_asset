@@ -76,7 +76,6 @@ class PeminjamanController extends Controller
 
     public function storeKendaraan(Request $request)
     {
-        // Store ke tabel Peminjaman
         $dateRange = $request->tanggal;
         list($tanggal_pinjam, $tanggal_kembali) = explode(' to ', $dateRange);
 
@@ -85,7 +84,7 @@ class PeminjamanController extends Controller
 
         $peminjaman = new Peminjaman();
         $peminjaman->peminjam = $request->peminjam;
-        $peminjaman->instansi = $request->instansi;
+        $peminjaman->jabatan = $request->jabatan;
         $peminjaman->tanggal_pinjam = $tanggal_pinjam;
         $peminjaman->tanggal_kembali = $tanggal_kembali;
         $peminjaman->deskripsi = $request->deskripsi;
@@ -115,6 +114,47 @@ class PeminjamanController extends Controller
         return redirect()->route('admin.peminjaman');
     }
 
+    public function storeLaptop(Request $request)
+    {
+        $dateRange = $request->tanggal;
+        list($tanggal_pinjam, $tanggal_kembali) = explode(' to ', $dateRange);
+
+        $tanggal_pinjam = Carbon::createFromFormat('d/m/Y', $tanggal_pinjam)->format('Y-m-d');
+        $tanggal_kembali = Carbon::createFromFormat('d/m/Y', $tanggal_kembali)->format('Y-m-d');
+
+        $peminjaman = new Peminjaman();
+        $peminjaman->peminjam = $request->peminjam;
+        $peminjaman->nip = $request->nip;
+        $peminjaman->instansi = $request->instansi;
+        $peminjaman->jabatan = $request->jabatan;
+        $peminjaman->tanggal_pinjam = $tanggal_pinjam;
+        $peminjaman->tanggal_kembali = $tanggal_kembali;
+        $peminjaman->alamat = $request->alamat;
+        $peminjaman->tipe = $request->tipe;
+        $peminjaman->id_petugas = session()->get('id');
+        $peminjaman->save();
+        
+        $id = $peminjaman->id_peminjaman;
+
+        // Store ke tabel Detail Peminjaman Dan Lokasi
+        $detailpeminjaman = new DetailPeminjaman();
+        $detailpeminjaman->id_peminjaman    = $id;
+        $detailpeminjaman->id_barang        = $request->nup;
+        $detailpeminjaman->lokasi_awal      = $request->lokasi_awal;
+        $detailpeminjaman->lokasi_akhir     = $request->lokasi_akhir;
+        $detailpeminjaman->deskripsi        = $request->deskripsi_barang; 
+        $detailpeminjaman->save();
+
+        $lokasi = new Lokasi();
+        $lokasi->id_barang      = $request->nup;
+        $lokasi->id_peminjaman  = $id;
+        $lokasi->lokasi         = $request->lokasi_akhir;
+        $lokasi->save();
+
+        session()->flash('success', 'Berhasil Menambah Data Peminjaman');
+        return redirect()->route('admin.peminjaman');
+    }
+
     public function create()
     {
         $data = [
@@ -129,10 +169,20 @@ class PeminjamanController extends Controller
     {
         $data = [
             'title'     => 'Tambah Peminjaman Aset Kendaraan',
-            'nama_barang'    => Barang::select('merek')->distinct()->get()
+            'nama_barang'    => Barang::select('merek')->whereNotNull('no_polisi')->distinct()->get()
         ];
 
         return view('admin.peminjaman.tambah-kendaraan',$data);
+    }
+
+    public function createLaptop()
+    {
+        $data = [
+            'title'     => 'Tambah Peminjaman Aset Laptop/Notebook',
+            'nama_barang'    => Barang::select('nama_barang')->where('nama_barang', 'LIKE', '%Lap Top%')->orWhere('nama_barang', 'LIKE', '%Note Book%')->distinct()->get()
+        ];
+
+        return view('admin.peminjaman.tambah-laptop',$data);
     }
 
     public function status($id)
@@ -191,9 +241,14 @@ class PeminjamanController extends Controller
         ];
         $data['petugas'] = Pengguna::where('id_pengguna', $data['peminjaman'][0]->id_petugas)->get();
 
-        //$pdf = Pdf::loadView('admin.peminjaman.viewPdf',$data);
-        $pdf = Pdf::loadView('admin.peminjaman.viewPdfKendaraan',$data);
-        //$pdf = Pdf::loadView('admin.peminjaman.viewPdfPeminjamanPC',$data);
+        if ($data['peminjaman'][0]->tipe === "BMN") {
+            $pdf = Pdf::loadView('admin.peminjaman.viewPdf',$data);
+        }elseif ($data['peminjaman'][0]->tipe === "Kendaraan") {
+            $pdf = Pdf::loadView('admin.peminjaman.viewPdfKendaraan',$data);
+        }else{
+            $pdf = Pdf::loadView('admin.peminjaman.viewPdfPeminjamanPC',$data);
+        }
+        
         return $pdf->stream();
     }
 

@@ -61,12 +61,7 @@
                     <tr>
                         <td>Jabatan</td>
                         <td style="padding-left:50px;">:</td>
-                        <td>{{ $peminjaman[0]->peminjam }}</td>
-                    </tr>
-                    <tr>
-                        <td>Tujuan</td>
-                        <td style="padding-left:50px;">:</td>
-                        <td>{{ $peminjaman[0]->instansi }}</td>
+                        <td>{{ $peminjaman[0]->jabatan }}</td>
                     </tr>
                     <tr>
                         <td>Keperluan</td>

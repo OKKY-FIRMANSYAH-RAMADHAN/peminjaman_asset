@@ -47,7 +47,7 @@
                         <div class="mt-2 mb-4">
                             <a href="{{ route('admin.peminjaman.tambah') }}" class="btn {{ Route::currentRouteName() === 'admin.peminjaman.tambah' ? 'btn-dark' : 'btn-outline-dark' }}  rounded-pill">BMN</a>
                             <a href="{{ route('admin.peminjaman.tambah-kendaraan') }}" class="btn {{ Route::currentRouteName() === 'admin.peminjaman.tambah-kendaraan' ? 'btn-dark' : 'btn-outline-dark' }} rounded-pill">Kendaraan</a>
-                            <a href="" class="btn btn-outline-dark rounded-pill">Laptop</a>
+                            <a href="{{ route('admin.peminjaman.tambah-laptop') }}" class="btn {{ Route::currentRouteName() === 'admin.peminjaman.tambah-laptop' ? 'btn-dark' : 'btn-outline-dark' }} rounded-pill">Laptop</a>
                         </div>
                         <div class="col-12">
                             <div class="form-floating mb-4">
@@ -56,9 +56,9 @@
                                 <label for="peminjam">Nama Peminjam</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <input type="text" class="form-control" id="instansi" name="instansi"
-                                    placeholder="Asal Instansi" required>
-                                <label for="instansi">Jabatan</label>
+                                <input type="text" class="form-control" id="jabatan" name="jabatan"
+                                    placeholder="Jabatan" required>
+                                <label for="jabatan">Jabatan</label>
                             </div>
                             <div class="form-floating mb-4">
                                 <input type="text" class="js-flatpickr form-control" id="tanggal" name="tanggal"

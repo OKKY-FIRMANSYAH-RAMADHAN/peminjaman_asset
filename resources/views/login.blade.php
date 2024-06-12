@@ -90,12 +90,12 @@
                                             <div class="mb-4">
                                                 <input type="text"
                                                     class="form-control form-control-lg form-control-alt py-3"
-                                                    id="name" name="name" placeholder="Email/Username">
+                                                    id="name" name="name" placeholder="Email/Username" required>
                                             </div>
                                             <div class="mb-4">
                                                 <input type="password"
                                                     class="form-control form-control-lg form-control-alt py-3"
-                                                    id="password" name="password" placeholder="Password">
+                                                    id="password" name="password" placeholder="Password" required>
                                             </div>
                                             <div class="d-flex justify-content-between align-items-center mb-4">
                                                 <div>

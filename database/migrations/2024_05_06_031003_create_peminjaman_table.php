@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('alamat', 255)->nullable();
             $table->string('no_telp', 255)->nullable();
             $table->string('nip', 255)->nullable();
+            $table->string('jabatan', 255)->nullable();
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali');
             $table->text('deskripsi')->nullable();
