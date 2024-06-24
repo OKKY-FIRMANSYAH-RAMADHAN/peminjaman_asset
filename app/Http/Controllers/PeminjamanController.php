@@ -32,9 +32,14 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        // Store ke tabel Peminjaman
         $dateRange = $request->tanggal;
-        list($tanggal_pinjam, $tanggal_kembali) = explode(' to ', $dateRange);
+
+        if (strpos($dateRange, ' to ') !== false) {
+            list($tanggal_pinjam, $tanggal_kembali) = explode(' to ', $dateRange);
+        } else {
+            $tanggal_pinjam = $dateRange;
+            $tanggal_kembali = $dateRange;
+        }
 
         $tanggal_pinjam = Carbon::createFromFormat('d/m/Y', $tanggal_pinjam)->format('Y-m-d');
         $tanggal_kembali = Carbon::createFromFormat('d/m/Y', $tanggal_kembali)->format('Y-m-d');
@@ -77,7 +82,13 @@ class PeminjamanController extends Controller
     public function storeKendaraan(Request $request)
     {
         $dateRange = $request->tanggal;
-        list($tanggal_pinjam, $tanggal_kembali) = explode(' to ', $dateRange);
+
+        if (strpos($dateRange, ' to ') !== false) {
+            list($tanggal_pinjam, $tanggal_kembali) = explode(' to ', $dateRange);
+        } else {
+            $tanggal_pinjam = $dateRange;
+            $tanggal_kembali = $dateRange;
+        }
 
         $tanggal_pinjam = Carbon::createFromFormat('d/m/Y', $tanggal_pinjam)->format('Y-m-d');
         $tanggal_kembali = Carbon::createFromFormat('d/m/Y', $tanggal_kembali)->format('Y-m-d');
@@ -117,7 +128,13 @@ class PeminjamanController extends Controller
     public function storeLaptop(Request $request)
     {
         $dateRange = $request->tanggal;
-        list($tanggal_pinjam, $tanggal_kembali) = explode(' to ', $dateRange);
+
+        if (strpos($dateRange, ' to ') !== false) {
+            list($tanggal_pinjam, $tanggal_kembali) = explode(' to ', $dateRange);
+        } else {
+            $tanggal_pinjam = $dateRange;
+            $tanggal_kembali = $dateRange;
+        }
 
         $tanggal_pinjam = Carbon::createFromFormat('d/m/Y', $tanggal_pinjam)->format('Y-m-d');
         $tanggal_kembali = Carbon::createFromFormat('d/m/Y', $tanggal_kembali)->format('Y-m-d');

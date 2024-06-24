@@ -146,8 +146,7 @@
                     <tbody style="text-align: center; text-indent: 5px;">
                         <tr>
                             <td style="height:130px; vertical-align:bottom"><span
-                                    style="text-decoration: underline; font-weight:bold">Heru Kurniawan, S.Pd.,
-                                    M.T.</span> <br>NIP. 198308242010121005</td>
+                                    style="text-decoration: underline; font-weight:bold">{{ $peminjaman[0]->peminjam }}</span> <br>NIP. {{ $peminjaman[0]->nip }}</td>
                             <td style="height:50px; width: 160px;"></td>
                             <td style="height:130px; vertical-align:bottom"><span
                                 style="text-decoration: underline; font-weight:bold">Diki Zulkarnaen, S.T., M.Sc.</span> <br>NIP. 197904182005021001</td>

@@ -232,9 +232,13 @@
             });
 
             form.addEventListener('submit', function(event) {
+                var tanggalInput = document.getElementById('tanggal').value;
                 if (tableBody.children.length === 0) {
                     event.preventDefault();
                     alert('Anda harus menambahkan minimal satu baris.');
+                }else if (!tanggalInput) {
+                    alert("Tanggal Harus Diisi!");
+                    event.preventDefault();
                 }
             });
 

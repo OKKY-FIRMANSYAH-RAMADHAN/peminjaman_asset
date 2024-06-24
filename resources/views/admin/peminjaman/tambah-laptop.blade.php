@@ -138,8 +138,7 @@
                             </table>
                         </div>
                         <div class="mt-2 text-end">
-                            <button type="submit" class="btn btn-primary"
-                                id="submitButton">Submit</button>
+                            <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -205,6 +204,14 @@
                     }
                 };
                 xhr.send();
+            });
+
+            form.addEventListener('submit', function(event) {
+                var tanggalInput = document.getElementById('tanggal').value;
+                if (!tanggalInput) {
+                    alert("Tanggal Harus Diisi!");
+                    event.preventDefault();
+                }
             });
         });
     </script>
