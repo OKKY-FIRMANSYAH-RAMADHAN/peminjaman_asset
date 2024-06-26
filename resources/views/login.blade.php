@@ -21,11 +21,11 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="">
 
-    <link rel="shortcut icon" href="{{ asset('assets/media/favicons/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/media/logo.png') }}">
     <link rel="icon" type="image/png" sizes="192x192"
-        href="{{ asset('assets/media/favicons/favicon-192x192.png') }}">
+        href="{{ asset('assets/media/logo.png') }}">
     <link rel="apple-touch-icon" sizes="180x180"
-        href="{{ asset('assets/media/favicons/apple-touch-icon-180x180.png') }}">
+        href="{{ asset('assets/media/logo.png') }}">
     <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/oneui.min.css') }}">
 </head>
 
@@ -45,7 +45,7 @@
                                     SIMPAN
                                 </a>
                                 <p class="text-white-75 me-xl-8 mt-2">
-                                    Selamat Datang Di Aplikasi SIMPAN (Sistem Peminjaman)
+                                    Selamat Datang Di Aplikasi SIMPAN (Sistem Monitoring dan Peminjaman Aset)
                                 </p>
                             </div>
                         </div>
