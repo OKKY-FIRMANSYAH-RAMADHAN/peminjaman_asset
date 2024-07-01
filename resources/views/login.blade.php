@@ -51,7 +51,7 @@
                         </div>
                         <div class="p-4 p-xl-5 d-xl-flex justify-content-between align-items-center fs-sm">
                             <p class="fw-medium text-white-50 mb-0">
-                                <strong>Team MBKM</strong> &copy; <span data-toggle="year-copy"></span>
+                            <strong></strong> &copy; <span data-toggle="year-copy"></span>, by Bapekom 6 Surabaya colaborate with MBKM Batch 6 2024
                             </p>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                         <div
                             class="px-4 py-3 w-100 d-lg-none d-flex flex-column flex-sm-row justify-content-between fs-sm text-center text-sm-start">
                             <p class="fw-medium text-black-50 py-2 mb-0">
-                                <strong>Team MBKM</strong> &copy; <span data-toggle="year-copy"></span>
+                                <strong></strong> &copy; <span data-toggle="year-copy"></span>, by Bapekom 6 Surabaya colaborate with MBKM Batch 6 2024
                             </p>
                         </div>
                     </div>
