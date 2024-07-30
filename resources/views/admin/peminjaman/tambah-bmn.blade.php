@@ -72,7 +72,7 @@
                             </div>
                             <div class="form-floating mb-4">
                                 <input type="text" class="js-flatpickr form-control" id="tanggal" name="tanggal"
-                                    placeholder="Pilih Rentang Tanggal" data-mode="range" data-min-date="today"
+                                    placeholder="Pilih Rentang Tanggal" data-mode="range"
                                     data-date-format="d/m/Y" required>
                                 <label for="tanggal_kembali">Pilih Tanggal</label>
                             </div>
