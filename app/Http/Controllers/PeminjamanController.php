@@ -34,8 +34,8 @@ class PeminjamanController extends Controller
     {
         $dateRange = $request->tanggal;
 
-        if (strpos($dateRange, ' to ') !== false) {
-            list($tanggal_pinjam, $tanggal_kembali) = explode(' to ', $dateRange);
+        if (strpos($dateRange, ' - ') !== false) {
+            list($tanggal_pinjam, $tanggal_kembali) = explode(' - ', $dateRange);
         } else {
             $tanggal_pinjam = $dateRange;
             $tanggal_kembali = $dateRange;
@@ -55,7 +55,7 @@ class PeminjamanController extends Controller
         $peminjaman->tipe = $request->tipe;
         $peminjaman->id_petugas = session()->get('id');
         $peminjaman->save();
-        
+
         $id = $peminjaman->id_peminjaman;
 
         // Store ke tabel Detail Peminjaman Dan Lokasi
@@ -83,8 +83,8 @@ class PeminjamanController extends Controller
     {
         $dateRange = $request->tanggal;
 
-        if (strpos($dateRange, ' to ') !== false) {
-            list($tanggal_pinjam, $tanggal_kembali) = explode(' to ', $dateRange);
+        if (strpos($dateRange, ' - ') !== false) {
+            list($tanggal_pinjam, $tanggal_kembali) = explode(' - ', $dateRange);
         } else {
             $tanggal_pinjam = $dateRange;
             $tanggal_kembali = $dateRange;
@@ -102,7 +102,7 @@ class PeminjamanController extends Controller
         $peminjaman->tipe = $request->tipe;
         $peminjaman->id_petugas = session()->get('id');
         $peminjaman->save();
-        
+
         $id = $peminjaman->id_peminjaman;
 
         // Store ke tabel Detail Peminjaman Dan Lokasi
@@ -129,8 +129,8 @@ class PeminjamanController extends Controller
     {
         $dateRange = $request->tanggal;
 
-        if (strpos($dateRange, ' to ') !== false) {
-            list($tanggal_pinjam, $tanggal_kembali) = explode(' to ', $dateRange);
+        if (strpos($dateRange, ' - ') !== false) {
+            list($tanggal_pinjam, $tanggal_kembali) = explode(' - ', $dateRange);
         } else {
             $tanggal_pinjam = $dateRange;
             $tanggal_kembali = $dateRange;
@@ -150,7 +150,7 @@ class PeminjamanController extends Controller
         $peminjaman->tipe = $request->tipe;
         $peminjaman->id_petugas = session()->get('id');
         $peminjaman->save();
-        
+
         $id = $peminjaman->id_peminjaman;
 
         // Store ke tabel Detail Peminjaman Dan Lokasi
@@ -159,7 +159,7 @@ class PeminjamanController extends Controller
         $detailpeminjaman->id_barang        = $request->nup;
         $detailpeminjaman->lokasi_awal      = $request->lokasi_awal;
         $detailpeminjaman->lokasi_akhir     = $request->lokasi_akhir;
-        $detailpeminjaman->deskripsi        = $request->deskripsi_barang; 
+        $detailpeminjaman->deskripsi        = $request->deskripsi_barang;
         $detailpeminjaman->save();
 
         $lokasi = new Lokasi();
@@ -265,7 +265,7 @@ class PeminjamanController extends Controller
         }else{
             $pdf = Pdf::loadView('admin.peminjaman.viewPdfPeminjamanPC',$data);
         }
-        
+
         return $pdf->stream();
     }
 

@@ -124,6 +124,7 @@
     <script src="{{ asset('assets/js/lib/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/select2/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/flatpickr/flatpickr.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/flatpickr/l10n/id.js') }}"></script>
     <script>
         document.getElementById('no_telp').addEventListener('input', function(e) {
             const value = e.target.value;
@@ -132,6 +133,7 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
             One.helpersOnLoad(['jq-select2', 'js-flatpickr']);
 
             const addButton = document.querySelector('.btn-tambah');

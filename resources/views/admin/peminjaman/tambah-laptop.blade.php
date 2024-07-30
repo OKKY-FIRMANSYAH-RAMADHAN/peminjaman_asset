@@ -151,6 +151,7 @@
     <script src="{{ asset('assets/js/lib/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/select2/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/flatpickr/flatpickr.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/flatpickr/l10n/id.js') }}"></script>
     <script>
         $(document).ready(function() {
             One.helpersOnLoad(['jq-select2', 'js-flatpickr']);
