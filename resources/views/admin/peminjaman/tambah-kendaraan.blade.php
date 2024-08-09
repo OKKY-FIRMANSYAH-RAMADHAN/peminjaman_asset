@@ -56,6 +56,11 @@
                                 <label for="peminjam">Nama Peminjam</label>
                             </div>
                             <div class="form-floating mb-4">
+                                <input type="number" class="form-control" id="nip" name="nip" placeholder="NIP"
+                                    required>
+                                <label for="nip">NIP</label>
+                            </div>
+                            <div class="form-floating mb-4">
                                 <input type="text" class="form-control" id="jabatan" name="jabatan"
                                     placeholder="Jabatan" required>
                                 <label for="jabatan">Jabatan</label>

@@ -94,8 +94,7 @@
                         <tr>
                             <td style="height:130px; vertical-align:bottom"><span style="text-decoration: underline; font-weight:bold">Heru Kurniawan, S.Pd., M.T.</span> <br>NIP. 198308242010121005</td>
                             <td style="height:50px; width: 160px;"></td>
-                            <td style="height:50px; vertical-align:bottom">{{ $peminjaman[0]->peminjam }} <br>NIP. <span
-                                    style="color:white">197004242007011</span> </td>
+                            <td style="height:50px; vertical-align:bottom">{{ $peminjaman[0]->peminjam }} <br>NIP. {!! $peminjaman[0]->nip ?? '<span style="color:white;">198308242010121005</span>' !!} </td>
                         </tr>
                     </tbody>
                 </table>
@@ -140,7 +139,7 @@
                         <td></td>
                         <td></td>
                         <td>Surabaya,
-                            {{ Carbon::parse(date('Y-m-d'))->locale('id')->translatedFormat('d F Y') }}<br><br>Petugas Pemeliharaan</td>
+                            {{ Carbon::parse($peminjaman[0]->tanggal_pinjam)->locale('id')->translatedFormat('d F Y') }}<br><br>Petugas Pemeliharaan</td>
                     </tr>
                 </thead>
                 <tbody style="text-align: center; text-indent: 5px;">

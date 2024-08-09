@@ -158,7 +158,7 @@
                         <td><br><br>Pengelola BMN</td>
                         <td></td>
                         <td>Surabaya,
-                            {{ Carbon::parse(date('Y-m-d'))->locale('id')->translatedFormat('d F Y') }}<br><br>Pengguna
+                            {{ Carbon::parse($peminjaman[0]->tanggal_pinjam)->locale('id')->translatedFormat('d F Y') }}<br><br>Pengguna
                             BMN</td>
                     </tr>
                 </thead>
@@ -166,8 +166,8 @@
                     <tr>
                         <td style="height:150px; vertical-align:bottom">{{$petugas[0]->nama}} <br>NIP. {{$petugas[0]->nip}}</td>
                         <td style="height:50px; width: 160px;"></td>
-                        <td style="height:50px; vertical-align:bottom">{{ $peminjaman[0]->peminjam }} <br>NIP. <span
-                                style="color:white">197004242007011</span> </td>
+                        <td style="height:50px; vertical-align:bottom">{{ $peminjaman[0]->peminjam }} <br>NIP. {!! $peminjaman[0]->nip ?? '<span style="color:white;">198308242010121005</span>' !!}
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -46,6 +46,7 @@ class PeminjamanController extends Controller
 
         $peminjaman = new Peminjaman();
         $peminjaman->peminjam = $request->peminjam;
+        $peminjaman->nip = $request->nip;
         $peminjaman->instansi = $request->instansi;
         $peminjaman->alamat = $request->alamat;
         $peminjaman->no_telp = $request->no_telp;
@@ -95,6 +96,7 @@ class PeminjamanController extends Controller
 
         $peminjaman = new Peminjaman();
         $peminjaman->peminjam = $request->peminjam;
+        $peminjaman->nip = $request->nip;
         $peminjaman->jabatan = $request->jabatan;
         $peminjaman->tanggal_pinjam = $tanggal_pinjam;
         $peminjaman->tanggal_kembali = $tanggal_kembali;

@@ -139,7 +139,7 @@
                         <tr>
                             <td><br><br>Pemakai <br> Laptop/Notebook</td>
                             <td></td>
-                            <td>Surabaya, {{ Carbon::parse(date('Y-m-d'))->locale('id')->translatedFormat('d F Y') }}
+                            <td>Surabaya, {{ Carbon::parse($peminjaman[0]->tanggal_pinjam)->locale('id')->translatedFormat('d F Y') }}
                                 <br><br>Kepala Satuan Kerja <br> Selaku Kuasa Pengguna Barang</td>
                         </tr>
                     </thead>
